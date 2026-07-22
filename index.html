@@ -695,11 +695,11 @@
 
   <!-- Footer -->
   <footer>
-    <div class="monogram">A <span class="ampersand">&</span> B</div>
+    <div class="monogram">성은 <span class="ampersand">&</span> 예원</div>
     <p>With Love &bull; 2026년 11월 7일</p>
   </footer>
 
-  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sic3bw2rt3"></script>
+  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sic3bw2rt3&submodules=geocoder"></script>
   <script>
     // ── Floating particles ──
     const canvas = document.getElementById('particles');
@@ -781,9 +781,7 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     // ── NAVER Maps ──
-    function initNaverMap(elId, lat, lng, label) {
-      if (typeof naver === 'undefined') return;
-      const position = new naver.maps.LatLng(lat, lng);
+    function renderNaverMap(elId, position, label) {
       const map = new naver.maps.Map(elId, {
         center: position,
         zoom: 17,
@@ -813,9 +811,26 @@
       });
     }
 
+    // 주소를 지오코딩해서 정확한 좌표를 찾고, 실패 시 fallback 좌표를 사용
+    function initNaverMapByAddress(elId, address, label, fallbackLat, fallbackLng) {
+      const fallback = new naver.maps.LatLng(fallbackLat, fallbackLng);
+      if (!naver.maps.Service) {
+        renderNaverMap(elId, fallback, label);
+        return;
+      }
+      naver.maps.Service.geocode({ query: address }, (status, response) => {
+        if (status === naver.maps.Service.Status.OK && response.v2.addresses.length > 0) {
+          const addr = response.v2.addresses[0];
+          renderNaverMap(elId, new naver.maps.LatLng(addr.y, addr.x), label);
+        } else {
+          renderNaverMap(elId, fallback, label);
+        }
+      });
+    }
+
     if (typeof naver !== 'undefined') {
-      initNaverMap('map-somang', 37.5278, 127.0271, '압구정 소망교회');
-      initNaverMap('map-sinku', 37.5270, 127.0264, '신구중학교 (주차장)');
+      initNaverMapByAddress('map-somang', '서울 강남구 압구정로36길 55 소망교회', '압구정 소망교회', 37.5278, 127.0271);
+      initNaverMapByAddress('map-sinku', '서울 강남구 압구정로36길 17 신구중학교', '신구중학교 (주차장)', 37.5270, 127.0264);
     }
   </script>
 </body>
