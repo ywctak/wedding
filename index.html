@@ -8,7 +8,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     *,
     *::before,
@@ -409,7 +408,7 @@
       letter-spacing: 0.1em;
     }
 
-    .map-leaflet {
+    .map-naver {
       max-width: 500px;
       margin: 2rem auto;
       height: 280px;
@@ -419,33 +418,26 @@
       z-index: 2;
     }
 
-    .leaflet-popup-content-wrapper {
+    .map-marker-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid #faf6f0;
+      box-shadow: 0 0 10px rgba(201, 169, 110, 0.8);
+    }
+
+    .naver-infowindow {
       background: #1a1a2e;
       color: #faf6f0;
       border: 1px solid rgba(201, 169, 110, 0.35);
       border-radius: 2px;
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
-    }
-
-    .leaflet-popup-tip {
-      background: #1a1a2e;
-    }
-
-    .leaflet-popup-content {
+      padding: 0.5rem 0.9rem;
       font-family: 'Montserrat', sans-serif;
       font-size: 0.75rem;
-      line-height: 1.7;
-      margin: 0.6rem 0.8rem;
-    }
-
-    .leaflet-control-attribution {
-      background: rgba(0, 0, 0, 0.55) !important;
-      color: rgba(255, 255, 255, 0.3) !important;
-      font-size: 0.55rem !important;
-    }
-
-    .leaflet-control-attribution a {
-      color: rgba(201, 169, 110, 0.45) !important;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
     }
 
     .nav-hint {
@@ -570,7 +562,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="monogram">A <span class="ampersand">&</span> B</div>
+    <div class="monogram">성은 <span class="ampersand">&</span> 예원</div>
     <div class="tagline">Together Forever</div>
     <div class="divider"><span class="divider-icon">&#9670;</span></div>
     <div class="date-text">2026년 11월 7일</div>
@@ -582,7 +574,7 @@
     <p class="section-label">결혼식까지</p>
     <h2
       style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold)">
-      디데이</h2>
+      D-day</h2>
     <div class="countdown">
       <div class="countdown-item">
         <span class="countdown-number" id="cd-days">000</span>
@@ -609,8 +601,8 @@
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="timeline-left">
-          <p class="timeline-time">오후 2:00</p>
-          <p class="timeline-event">하객 입장 및 웰컴 드링크</p>
+          <p class="timeline-time">오후 12:00</p>
+          <p class="timeline-event">식사 시작</p>
         </div>
         <div>
           <div class="timeline-dot"></div>
@@ -623,34 +615,34 @@
           <div class="timeline-dot"></div>
         </div>
         <div class="timeline-right">
-          <p class="timeline-time">오후 3:00</p>
-          <p class="timeline-event">결혼 예식</p>
+          <p class="timeline-time">오후 2:00</p>
+          <p class="timeline-event">결혼 베뉴 입장 가능</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-left">
+          <p class="timeline-time">오후 2:00</p>
+          <p class="timeline-event">결혼 예식 시작 </p>
+        </div>
+        <div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-right"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-left"></div>
+        <div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-right">
+          <p class="timeline-time">오후 2:50 </p>
+          <p class="timeline-event">결혼 예식 마무리</p>
         </div>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-left">
           <p class="timeline-time">오후 4:00</p>
-          <p class="timeline-event">칵테일 타임</p>
-        </div>
-        <div>
-          <div class="timeline-dot"></div>
-        </div>
-        <div class="timeline-right"></div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-left"></div>
-        <div>
-          <div class="timeline-dot"></div>
-        </div>
-        <div class="timeline-right">
-          <p class="timeline-time">오후 6:00</p>
-          <p class="timeline-event">피로연 및 축하 만찬</p>
-        </div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-left">
-          <p class="timeline-time">오후 10:00</p>
-          <p class="timeline-event">피날레</p>
+          <p class="timeline-event">식사 시간 마무리</p>
         </div>
         <div>
           <div class="timeline-dot"></div>
@@ -670,7 +662,7 @@
       <p class="address-detail">압구정 소망교회 2층 선교관</p>
     </div>
 
-    <div id="map-somang" class="map-leaflet"></div>
+    <div id="map-somang" class="map-naver"></div>
 
     <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
     <div class="nav-buttons reveal">
@@ -689,7 +681,7 @@
 
     <p class="location-sub-label reveal">주차장 위치</p>
 
-    <div id="map-sinku" class="map-leaflet"></div>
+    <div id="map-sinku" class="map-naver"></div>
 
     <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
     <div class="nav-buttons reveal">
@@ -703,9 +695,10 @@
   <!-- Footer -->
   <footer>
     <div class="monogram">A <span class="ampersand">&</span> B</div>
-    <p>사랑을 담아 &bull; 2026년 11월 7일</p>
+    <p>With Love &bull; 2026년 11월 7일</p>
   </footer>
 
+  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=sic3bw2rt3"></script>
   <script>
     // ── Floating particles ──
     const canvas = document.getElementById('particles');
@@ -785,39 +778,44 @@
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    // ── Maps ──
-    const goldIcon = L.divIcon({
-      html: '<div style="width:13px;height:13px;border-radius:50%;background:#c9a96e;border:2px solid #1a1a2e;box-shadow:0 0 14px rgba(201,169,110,0.9);"></div>',
-      iconSize: [13, 13],
-      iconAnchor: [6, 6],
-      className: ''
-    });
 
-    const tileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-    const tileOpts = {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 19
-    };
+    // ── NAVER Maps ──
+    function initNaverMap(elId, lat, lng, label) {
+      if (typeof naver === 'undefined') return;
+      const position = new naver.maps.LatLng(lat, lng);
+      const map = new naver.maps.Map(elId, {
+        center: position,
+        zoom: 17,
+        zoomControl: false,
+        scrollWheel: false,
+      });
+      const marker = new naver.maps.Marker({
+        position,
+        map,
+        icon: {
+          content: '<div class="map-marker-dot"></div>',
+          size: new naver.maps.Size(16, 16),
+          anchor: new naver.maps.Point(8, 8),
+        },
+      });
+      const infoWindow = new naver.maps.InfoWindow({
+        content: `<div class="naver-infowindow">${label}</div>`,
+        borderWidth: 0,
+        backgroundColor: 'transparent',
+        disableAnchor: true,
+        pixelOffset: new naver.maps.Point(0, -10),
+      });
+      infoWindow.open(map, marker);
+      naver.maps.Event.addListener(marker, 'click', () => {
+        if (infoWindow.getMap()) infoWindow.close();
+        else infoWindow.open(map, marker);
+      });
+    }
 
-    const mapSomang = L.map('map-somang', { zoomControl: false, scrollWheelZoom: false })
-      .setView([37.5278, 127.0271], 17);
-    L.tileLayer(tileUrl, tileOpts).addTo(mapSomang);
-    L.marker([37.5278, 127.0271], { icon: goldIcon })
-      .addTo(mapSomang)
-      .bindPopup('<b style="color:#c9a96e;font-family:\'Cormorant Garamond\',serif;font-size:1rem">압구정 소망교회</b><br>강남구 압구정로36길 55<br>2층 선교관')
-      .openPopup();
-
-    const mapSinku = L.map('map-sinku', { zoomControl: false, scrollWheelZoom: false })
-      .setView([37.5270, 127.0264], 17);
-    L.tileLayer(tileUrl, tileOpts).addTo(mapSinku);
-    L.marker([37.5270, 127.0264], { icon: goldIcon })
-      .addTo(mapSinku)
-      .bindPopup('<b style="color:#c9a96e;font-family:\'Cormorant Garamond\',serif;font-size:1rem">신구중학교</b><br>강남구 압구정로36길 17<br>(주차 가능)')
-      .openPopup();
+    if (typeof naver !== 'undefined') {
+      initNaverMap('map-somang', 37.5278, 127.0271, '압구정 소망교회');
+      initNaverMap('map-sinku', 37.5270, 127.0264, '신구중학교 (주차장)');
+    }
   </script>
 </body>
 
