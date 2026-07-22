@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>우리의 결혼식</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --gold: #c9a96e;
@@ -14,7 +24,9 @@
       --dark: #1a1a2e;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--dark);
@@ -49,7 +61,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, rgba(201,169,110,0.12) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(201, 169, 110, 0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -61,7 +73,7 @@
       line-height: 1;
       letter-spacing: 0.1em;
       animation: fadeDown 1.4s ease both;
-      text-shadow: 0 0 60px rgba(201,169,110,0.4);
+      text-shadow: 0 0 60px rgba(201, 169, 110, 0.4);
     }
 
     .ampersand {
@@ -90,7 +102,8 @@
       opacity: 0;
     }
 
-    .divider::before, .divider::after {
+    .divider::before,
+    .divider::after {
       content: '';
       flex: 1;
       height: 1px;
@@ -151,12 +164,18 @@
       inset: 0;
       background: var(--gold);
       transform: translateX(-101%);
-      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: -1;
     }
 
-    .btn:hover { color: var(--dark); transform: translateY(-2px); }
-    .btn:hover::before { transform: translateX(0); }
+    .btn:hover {
+      color: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .btn:hover::before {
+      transform: translateX(0);
+    }
 
     /* ── Countdown ── */
     .countdown-section {
@@ -164,9 +183,9 @@
       z-index: 1;
       padding: 6rem 2rem;
       text-align: center;
-      background: rgba(255,255,255,0.02);
-      border-top: 1px solid rgba(201,169,110,0.15);
-      border-bottom: 1px solid rgba(201,169,110,0.15);
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.15);
     }
 
     .section-label {
@@ -198,7 +217,7 @@
       font-weight: 300;
       line-height: 1;
       color: var(--gold);
-      text-shadow: 0 0 30px rgba(201,169,110,0.3);
+      text-shadow: 0 0 30px rgba(201, 169, 110, 0.3);
     }
 
     .countdown-label {
@@ -222,19 +241,22 @@
     }
 
     @media (max-width: 640px) {
-      .story-section { grid-template-columns: 1fr; gap: 2rem; }
+      .story-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
     }
 
     .story-image {
       aspect-ratio: 3/4;
-      background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.05));
-      border: 1px solid rgba(201,169,110,0.25);
+      background: linear-gradient(135deg, rgba(201, 169, 110, 0.2), rgba(201, 169, 110, 0.05));
+      border: 1px solid rgba(201, 169, 110, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
-      color: rgba(201,169,110,0.5);
+      color: rgba(201, 169, 110, 0.5);
       letter-spacing: 0.15em;
     }
 
@@ -259,8 +281,8 @@
       z-index: 1;
       padding: 6rem 2rem;
       text-align: center;
-      background: rgba(255,255,255,0.02);
-      border-top: 1px solid rgba(201,169,110,0.1);
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(201, 169, 110, 0.1);
     }
 
     .timeline-section h2 {
@@ -281,7 +303,8 @@
       content: '';
       position: absolute;
       left: 50%;
-      top: 0; bottom: 0;
+      top: 0;
+      bottom: 0;
       width: 1px;
       background: linear-gradient(to bottom, transparent, var(--gold), transparent);
       transform: translateX(-50%);
@@ -295,8 +318,13 @@
       margin-bottom: 3rem;
     }
 
-    .timeline-left { text-align: right; }
-    .timeline-right { text-align: left; }
+    .timeline-left {
+      text-align: right;
+    }
+
+    .timeline-right {
+      text-align: left;
+    }
 
     .timeline-dot {
       width: 10px;
@@ -305,7 +333,7 @@
       background: var(--dark);
       border-radius: 50%;
       margin: 0.35rem auto 0;
-      box-shadow: 0 0 10px rgba(201,169,110,0.4);
+      box-shadow: 0 0 10px rgba(201, 169, 110, 0.4);
     }
 
     .timeline-time {
@@ -328,7 +356,7 @@
       z-index: 1;
       text-align: center;
       padding: 4rem 2rem;
-      border-top: 1px solid rgba(201,169,110,0.15);
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
     }
 
     footer .monogram {
@@ -350,8 +378,8 @@
       z-index: 1;
       padding: 6rem 2rem;
       text-align: center;
-      background: rgba(255,255,255,0.02);
-      border-top: 1px solid rgba(201,169,110,0.15);
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(201, 169, 110, 0.15);
     }
 
     .location-section h2 {
@@ -381,36 +409,43 @@
       letter-spacing: 0.1em;
     }
 
-    .map-area {
+    .map-leaflet {
       max-width: 500px;
       margin: 2rem auto;
-      aspect-ratio: 16/9;
-      border: 1px solid rgba(201,169,110,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(201,169,110,0.05);
-      cursor: pointer;
-      transition: background 0.3s;
-      text-decoration: none;
-      color: var(--gold);
-      flex-direction: column;
-      gap: 0.6rem;
+      height: 280px;
+      border: 1px solid rgba(201, 169, 110, 0.25);
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
     }
 
-    .map-area:hover { background: rgba(201,169,110,0.1); }
-
-    .map-area-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.08em;
+    .leaflet-popup-content-wrapper {
+      background: #1a1a2e;
+      color: #faf6f0;
+      border: 1px solid rgba(201, 169, 110, 0.35);
+      border-radius: 2px;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
     }
 
-    .map-area-hint {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      opacity: 0.5;
-      text-transform: uppercase;
+    .leaflet-popup-tip {
+      background: #1a1a2e;
+    }
+
+    .leaflet-popup-content {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      line-height: 1.7;
+      margin: 0.6rem 0.8rem;
+    }
+
+    .leaflet-control-attribution {
+      background: rgba(0, 0, 0, 0.55) !important;
+      color: rgba(255, 255, 255, 0.3) !important;
+      font-size: 0.55rem !important;
+    }
+
+    .leaflet-control-attribution a {
+      color: rgba(201, 169, 110, 0.45) !important;
     }
 
     .nav-hint {
@@ -449,19 +484,24 @@
       inset: 0;
       background: var(--gold);
       transform: translateX(-101%);
-      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: -1;
     }
 
-    .nav-btn:hover { color: var(--dark); }
-    .nav-btn:hover::before { transform: translateX(0); }
+    .nav-btn:hover {
+      color: var(--dark);
+    }
+
+    .nav-btn:hover::before {
+      transform: translateX(0);
+    }
 
     .parking-info {
       max-width: 500px;
       margin: 3rem auto 0.5rem;
       padding: 1.5rem 2rem;
-      border: 1px solid rgba(201,169,110,0.15);
-      background: rgba(201,169,110,0.04);
+      border: 1px solid rgba(201, 169, 110, 0.15);
+      background: rgba(201, 169, 110, 0.04);
       text-align: left;
     }
 
@@ -490,13 +530,25 @@
 
     /* ── Animations ── */
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .reveal {
@@ -511,224 +563,262 @@
     }
   </style>
 </head>
+
 <body>
 
-<canvas id="particles"></canvas>
+  <canvas id="particles"></canvas>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="monogram">A <span class="ampersand">&</span> B</div>
-  <div class="tagline">영원히 함께</div>
-  <div class="divider"><span class="divider-icon">&#9670;</span></div>
-  <div class="date-text">2026년 11월 7일</div>
-  <p class="location">압구정 소망교회 2층 선교관</p>
-  <div class="cta">
-    <a href="#" class="btn">참석 여부 회신</a>
-    <a href="#" class="btn">우리의 이야기</a>
-  </div>
-</section>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="monogram">A <span class="ampersand">&</span> B</div>
+    <div class="tagline">Together Forever</div>
+    <div class="divider"><span class="divider-icon">&#9670;</span></div>
+    <div class="date-text">2026년 11월 7일</div>
+    <p class="location">압구정 소망교회 2층 선교관</p>
+  </section>
 
-<!-- Countdown -->
-<section class="countdown-section">
-  <p class="section-label">결혼식까지</p>
-  <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold)">디데이</h2>
-  <div class="countdown">
-    <div class="countdown-item">
-      <span class="countdown-number" id="cd-days">000</span>
-      <span class="countdown-label">일</span>
+  <!-- Countdown -->
+  <section class="countdown-section">
+    <p class="section-label">결혼식까지</p>
+    <h2
+      style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold)">
+      디데이</h2>
+    <div class="countdown">
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-days">000</span>
+        <span class="countdown-label">일</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-hours">00</span>
+        <span class="countdown-label">시간</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-mins">00</span>
+        <span class="countdown-label">분</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="cd-secs">00</span>
+        <span class="countdown-label">초</span>
+      </div>
     </div>
-    <div class="countdown-item">
-      <span class="countdown-number" id="cd-hours">00</span>
-      <span class="countdown-label">시간</span>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <h2 class="reveal">행사 일정</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-left">
+          <p class="timeline-time">오후 2:00</p>
+          <p class="timeline-event">하객 입장 및 웰컴 드링크</p>
+        </div>
+        <div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-right"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-left"></div>
+        <div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-right">
+          <p class="timeline-time">오후 3:00</p>
+          <p class="timeline-event">결혼 예식</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-left">
+          <p class="timeline-time">오후 4:00</p>
+          <p class="timeline-event">칵테일 타임</p>
+        </div>
+        <div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-right"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-left"></div>
+        <div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-right">
+          <p class="timeline-time">오후 6:00</p>
+          <p class="timeline-event">피로연 및 축하 만찬</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-left">
+          <p class="timeline-time">오후 10:00</p>
+          <p class="timeline-event">피날레</p>
+        </div>
+        <div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-right"></div>
+      </div>
     </div>
-    <div class="countdown-item">
-      <span class="countdown-number" id="cd-mins">00</span>
-      <span class="countdown-label">분</span>
+  </section>
+
+  <!-- Location -->
+  <section class="location-section" id="location">
+    <p class="section-label">LOCATION</p>
+    <h2 class="reveal">오시는 길</h2>
+
+    <div class="address-block reveal">
+      <p class="address-main">서울특별시 강남구 압구정로36길 55</p>
+      <p class="address-detail">압구정 소망교회 2층 선교관</p>
     </div>
-    <div class="countdown-item">
-      <span class="countdown-number" id="cd-secs">00</span>
-      <span class="countdown-label">초</span>
+
+    <div id="map-somang" class="map-leaflet"></div>
+
+    <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
+    <div class="nav-buttons reveal">
+      <a class="nav-btn" href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+55+소망교회" target="_blank"
+        rel="noopener">네이버 지도</a>
+      <a class="nav-btn" href="https://map.kakao.com/link/to/소망교회,37.5278,127.0271" target="_blank"
+        rel="noopener">카카오맵</a>
     </div>
-  </div>
-</section>
 
-<!-- Timeline -->
-<section class="timeline-section">
-  <h2 class="reveal">행사 일정</h2>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-left"><p class="timeline-time">오후 2:00</p><p class="timeline-event">하객 입장 및 웰컴 드링크</p></div>
-      <div><div class="timeline-dot"></div></div>
-      <div class="timeline-right"></div>
+    <div class="divider reveal"><span class="divider-icon">&#9670;</span></div>
+
+    <div class="parking-info reveal">
+      <p class="parking-title">자가용</p>
+      <p class="parking-text">신구중학교, 소망교회 본관 앞마당, 지하 주차장에 주차해주시기 바랍니다.</p>
     </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-left"></div>
-      <div><div class="timeline-dot"></div></div>
-      <div class="timeline-right"><p class="timeline-time">오후 3:00</p><p class="timeline-event">결혼 예식</p></div>
+
+    <p class="location-sub-label reveal">주차장 위치</p>
+
+    <div id="map-sinku" class="map-leaflet"></div>
+
+    <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
+    <div class="nav-buttons reveal">
+      <a class="nav-btn" href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+17+신구중학교" target="_blank"
+        rel="noopener">네이버 지도</a>
+      <a class="nav-btn" href="https://map.kakao.com/link/to/신구중학교,37.5270,127.0264" target="_blank"
+        rel="noopener">카카오맵</a>
     </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-left"><p class="timeline-time">오후 4:00</p><p class="timeline-event">칵테일 타임</p></div>
-      <div><div class="timeline-dot"></div></div>
-      <div class="timeline-right"></div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-left"></div>
-      <div><div class="timeline-dot"></div></div>
-      <div class="timeline-right"><p class="timeline-time">오후 6:00</p><p class="timeline-event">피로연 및 축하 만찬</p></div>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-left"><p class="timeline-time">오후 10:00</p><p class="timeline-event">피날레</p></div>
-      <div><div class="timeline-dot"></div></div>
-      <div class="timeline-right"></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Location -->
-<section class="location-section" id="location">
-  <p class="section-label">LOCATION</p>
-  <h2 class="reveal">오시는 길</h2>
+  <!-- Footer -->
+  <footer>
+    <div class="monogram">A <span class="ampersand">&</span> B</div>
+    <p>사랑을 담아 &bull; 2026년 11월 7일</p>
+  </footer>
 
-  <div class="address-block reveal">
-    <p class="address-main">서울특별시 강남구 압구정로36길 55</p>
-    <p class="address-detail">압구정 소망교회 2층 선교관</p>
-  </div>
+  <script>
+    // ── Floating particles ──
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
 
-  <a class="map-area reveal"
-     href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+55+소망교회"
-     target="_blank" rel="noopener">
-    <span class="map-area-name">소망교회</span>
-    <span class="map-area-hint">네이버 지도에서 보기 ↗</span>
-  </a>
-
-  <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
-  <div class="nav-buttons reveal">
-    <a class="nav-btn"
-       href="https://map.naver.com/v5/directions/-/-/-/walk?c=14163393,4511762,15,0,0,0,dh"
-       target="_blank" rel="noopener">네이버 지도</a>
-    <a class="nav-btn"
-       href="https://tmap.life/route?goalname=소망교회&goaly=37.5271&goalx=127.0268"
-       target="_blank" rel="noopener">T맵</a>
-    <a class="nav-btn"
-       href="https://map.kakao.com/link/to/소망교회,37.5271,127.0268"
-       target="_blank" rel="noopener">카카오맵</a>
-  </div>
-
-  <div class="divider reveal"><span class="divider-icon">&#9670;</span></div>
-
-  <div class="parking-info reveal">
-    <p class="parking-title">자가용</p>
-    <p class="parking-text">신구중학교, 소망교회 본관 앞마당, 지하 주차장에 주차해주시기 바랍니다.</p>
-  </div>
-
-  <p class="location-sub-label reveal">주차장 위치</p>
-
-  <a class="map-area reveal"
-     href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+17+신구중학교"
-     target="_blank" rel="noopener">
-    <span class="map-area-name">신구중학교</span>
-    <span class="map-area-hint">네이버 지도에서 보기 ↗</span>
-  </a>
-
-  <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
-  <div class="nav-buttons reveal">
-    <a class="nav-btn"
-       href="https://map.naver.com/v5/directions/-/-/-/walk?c=14163300,4511720,15,0,0,0,dh"
-       target="_blank" rel="noopener">네이버 지도</a>
-    <a class="nav-btn"
-       href="https://tmap.life/route?goalname=신구중학교&goaly=37.5267&goalx=127.0262"
-       target="_blank" rel="noopener">T맵</a>
-    <a class="nav-btn"
-       href="https://map.kakao.com/link/to/신구중학교,37.5267,127.0262"
-       target="_blank" rel="noopener">카카오맵</a>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="monogram">A <span class="ampersand">&</span> B</div>
-  <p>사랑을 담아 &bull; 2026년 11월 7일</p>
-</footer>
-
-<script>
-  // ── Floating particles ──
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(init) {
-      this.x = Math.random() * W;
-      this.y = init ? Math.random() * H : H + 10;
-      this.r = Math.random() * 2 + 0.5;
-      this.speed = Math.random() * 0.4 + 0.15;
-      this.drift = (Math.random() - 0.5) * 0.3;
-      this.alpha = Math.random() * 0.5 + 0.1;
-      this.wobble = Math.random() * Math.PI * 2;
-      this.wobbleSpeed = Math.random() * 0.01 + 0.005;
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
     }
-    update() {
-      this.wobble += this.wobbleSpeed;
-      this.x += this.drift + Math.sin(this.wobble) * 0.4;
-      this.y -= this.speed;
-      if (this.y < -10) this.reset(false);
+
+    class Particle {
+      constructor() { this.reset(true); }
+      reset(init) {
+        this.x = Math.random() * W;
+        this.y = init ? Math.random() * H : H + 10;
+        this.r = Math.random() * 2 + 0.5;
+        this.speed = Math.random() * 0.4 + 0.15;
+        this.drift = (Math.random() - 0.5) * 0.3;
+        this.alpha = Math.random() * 0.5 + 0.1;
+        this.wobble = Math.random() * Math.PI * 2;
+        this.wobbleSpeed = Math.random() * 0.01 + 0.005;
+      }
+      update() {
+        this.wobble += this.wobbleSpeed;
+        this.x += this.drift + Math.sin(this.wobble) * 0.4;
+        this.y -= this.speed;
+        if (this.y < -10) this.reset(false);
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(201,169,110,${this.alpha})`;
+        ctx.fill();
+      }
     }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201,169,110,${this.alpha})`;
-      ctx.fill();
+
+    function initParticles() {
+      particles = Array.from({ length: 80 }, () => new Particle());
     }
-  }
 
-  function initParticles() {
-    particles = Array.from({ length: 80 }, () => new Particle());
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-
-  resize();
-  initParticles();
-  animate();
-  window.addEventListener('resize', () => { resize(); });
-
-  // ── Countdown ──
-  const target = new Date('2026-11-07T14:00:00');
-  function updateCountdown() {
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) {
-      document.getElementById('cd-days').textContent = '000';
-      return;
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
     }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cd-days').textContent  = String(d).padStart(3, '0');
-    document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-    document.getElementById('cd-mins').textContent  = String(m).padStart(2, '0');
-    document.getElementById('cd-secs').textContent  = String(s).padStart(2, '0');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 
-  // ── Scroll reveal ──
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.15 });
+    resize();
+    initParticles();
+    animate();
+    window.addEventListener('resize', () => { resize(); });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+    // ── Countdown ──
+    const target = new Date('2026-11-07T14:00:00');
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '000';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(3, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // ── Maps ──
+    const goldIcon = L.divIcon({
+      html: '<div style="width:13px;height:13px;border-radius:50%;background:#c9a96e;border:2px solid #1a1a2e;box-shadow:0 0 14px rgba(201,169,110,0.9);"></div>',
+      iconSize: [13, 13],
+      iconAnchor: [6, 6],
+      className: ''
+    });
+
+    const tileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+    const tileOpts = {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    };
+
+    const mapSomang = L.map('map-somang', { zoomControl: false, scrollWheelZoom: false })
+      .setView([37.5278, 127.0271], 17);
+    L.tileLayer(tileUrl, tileOpts).addTo(mapSomang);
+    L.marker([37.5278, 127.0271], { icon: goldIcon })
+      .addTo(mapSomang)
+      .bindPopup('<b style="color:#c9a96e;font-family:\'Cormorant Garamond\',serif;font-size:1rem">압구정 소망교회</b><br>강남구 압구정로36길 55<br>2층 선교관')
+      .openPopup();
+
+    const mapSinku = L.map('map-sinku', { zoomControl: false, scrollWheelZoom: false })
+      .setView([37.5270, 127.0264], 17);
+    L.tileLayer(tileUrl, tileOpts).addTo(mapSinku);
+    L.marker([37.5270, 127.0264], { icon: goldIcon })
+      .addTo(mapSinku)
+      .bindPopup('<b style="color:#c9a96e;font-family:\'Cormorant Garamond\',serif;font-size:1rem">신구중학교</b><br>강남구 압구정로36길 17<br>(주차 가능)')
+      .openPopup();
+  </script>
 </body>
+
 </html>
