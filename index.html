@@ -344,6 +344,150 @@
       margin-top: 1rem;
     }
 
+    /* ── Location ── */
+    .location-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      text-align: center;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(201,169,110,0.15);
+    }
+
+    .location-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .address-block {
+      margin: 2rem auto;
+      max-width: 500px;
+    }
+
+    .address-main {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      opacity: 0.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .address-detail {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .map-area {
+      max-width: 500px;
+      margin: 2rem auto;
+      aspect-ratio: 16/9;
+      border: 1px solid rgba(201,169,110,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(201,169,110,0.05);
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+      color: var(--gold);
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .map-area:hover { background: rgba(201,169,110,0.1); }
+
+    .map-area-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+    }
+
+    .map-area-hint {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+
+    .nav-hint {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      opacity: 0.45;
+      margin: 1.5rem auto 0.8rem;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .nav-btn {
+      padding: 0.7rem 1.5rem;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      z-index: -1;
+    }
+
+    .nav-btn:hover { color: var(--dark); }
+    .nav-btn:hover::before { transform: translateX(0); }
+
+    .parking-info {
+      max-width: 500px;
+      margin: 3rem auto 0.5rem;
+      padding: 1.5rem 2rem;
+      border: 1px solid rgba(201,169,110,0.15);
+      background: rgba(201,169,110,0.04);
+      text-align: left;
+    }
+
+    .parking-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.08em;
+    }
+
+    .parking-text {
+      font-size: 0.83rem;
+      line-height: 1.85;
+      opacity: 0.65;
+    }
+
+    .location-sub-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.6;
+      margin: 3rem 0 0.5rem;
+    }
+
     /* ── Animations ── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-20px); }
@@ -376,8 +520,8 @@
   <div class="monogram">A <span class="ampersand">&</span> B</div>
   <div class="tagline">영원히 함께</div>
   <div class="divider"><span class="divider-icon">&#9670;</span></div>
-  <div class="date-text">2026년 9월 20일</div>
-  <p class="location">그랜드 볼룸 &bull; 더 팰리스 호텔 &bull; 샌프란시스코</p>
+  <div class="date-text">2026년 11월 7일</div>
+  <p class="location">압구정 소망교회 2층 선교관</p>
   <div class="cta">
     <a href="#" class="btn">참석 여부 회신</a>
     <a href="#" class="btn">우리의 이야기</a>
@@ -413,30 +557,90 @@
   <h2 class="reveal">행사 일정</h2>
   <div class="timeline">
     <div class="timeline-item reveal">
-      <div class="timeline-left"><p class="timeline-time">오후 3:00</p><p class="timeline-event">하객 입장 및 웰컴 드링크</p></div>
+      <div class="timeline-left"><p class="timeline-time">오후 2:00</p><p class="timeline-event">하객 입장 및 웰컴 드링크</p></div>
       <div><div class="timeline-dot"></div></div>
       <div class="timeline-right"></div>
     </div>
     <div class="timeline-item reveal">
       <div class="timeline-left"></div>
       <div><div class="timeline-dot"></div></div>
-      <div class="timeline-right"><p class="timeline-time">오후 4:00</p><p class="timeline-event">결혼 예식</p></div>
+      <div class="timeline-right"><p class="timeline-time">오후 3:00</p><p class="timeline-event">결혼 예식</p></div>
     </div>
     <div class="timeline-item reveal">
-      <div class="timeline-left"><p class="timeline-time">오후 5:00</p><p class="timeline-event">칵테일 타임</p></div>
+      <div class="timeline-left"><p class="timeline-time">오후 4:00</p><p class="timeline-event">칵테일 타임</p></div>
       <div><div class="timeline-dot"></div></div>
       <div class="timeline-right"></div>
     </div>
     <div class="timeline-item reveal">
       <div class="timeline-left"></div>
       <div><div class="timeline-dot"></div></div>
-      <div class="timeline-right"><p class="timeline-time">오후 7:00</p><p class="timeline-event">피로연 및 축하 만찬</p></div>
+      <div class="timeline-right"><p class="timeline-time">오후 6:00</p><p class="timeline-event">피로연 및 축하 만찬</p></div>
     </div>
     <div class="timeline-item reveal">
-      <div class="timeline-left"><p class="timeline-time">오후 11:00</p><p class="timeline-event">피날레</p></div>
+      <div class="timeline-left"><p class="timeline-time">오후 10:00</p><p class="timeline-event">피날레</p></div>
       <div><div class="timeline-dot"></div></div>
       <div class="timeline-right"></div>
     </div>
+  </div>
+</section>
+
+<!-- Location -->
+<section class="location-section" id="location">
+  <p class="section-label">LOCATION</p>
+  <h2 class="reveal">오시는 길</h2>
+
+  <div class="address-block reveal">
+    <p class="address-main">서울특별시 강남구 압구정로36길 55</p>
+    <p class="address-detail">압구정 소망교회 2층 선교관</p>
+  </div>
+
+  <a class="map-area reveal"
+     href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+55+소망교회"
+     target="_blank" rel="noopener">
+    <span class="map-area-name">소망교회</span>
+    <span class="map-area-hint">네이버 지도에서 보기 ↗</span>
+  </a>
+
+  <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
+  <div class="nav-buttons reveal">
+    <a class="nav-btn"
+       href="https://map.naver.com/v5/directions/-/-/-/walk?c=14163393,4511762,15,0,0,0,dh"
+       target="_blank" rel="noopener">네이버 지도</a>
+    <a class="nav-btn"
+       href="https://tmap.life/route?goalname=소망교회&goaly=37.5271&goalx=127.0268"
+       target="_blank" rel="noopener">T맵</a>
+    <a class="nav-btn"
+       href="https://map.kakao.com/link/to/소망교회,37.5271,127.0268"
+       target="_blank" rel="noopener">카카오맵</a>
+  </div>
+
+  <div class="divider reveal"><span class="divider-icon">&#9670;</span></div>
+
+  <div class="parking-info reveal">
+    <p class="parking-title">자가용</p>
+    <p class="parking-text">신구중학교, 소망교회 본관 앞마당, 지하 주차장에 주차해주시기 바랍니다.</p>
+  </div>
+
+  <p class="location-sub-label reveal">주차장 위치</p>
+
+  <a class="map-area reveal"
+     href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+17+신구중학교"
+     target="_blank" rel="noopener">
+    <span class="map-area-name">신구중학교</span>
+    <span class="map-area-hint">네이버 지도에서 보기 ↗</span>
+  </a>
+
+  <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
+  <div class="nav-buttons reveal">
+    <a class="nav-btn"
+       href="https://map.naver.com/v5/directions/-/-/-/walk?c=14163300,4511720,15,0,0,0,dh"
+       target="_blank" rel="noopener">네이버 지도</a>
+    <a class="nav-btn"
+       href="https://tmap.life/route?goalname=신구중학교&goaly=37.5267&goalx=127.0262"
+       target="_blank" rel="noopener">T맵</a>
+    <a class="nav-btn"
+       href="https://map.kakao.com/link/to/신구중학교,37.5267,127.0262"
+       target="_blank" rel="noopener">카카오맵</a>
   </div>
 </section>
 
@@ -499,7 +703,7 @@
   window.addEventListener('resize', () => { resize(); });
 
   // ── Countdown ──
-  const target = new Date('2026-11-07T16:00:00');
+  const target = new Date('2026-11-07T14:00:00');
   function updateCountdown() {
     const now = new Date();
     const diff = target - now;
