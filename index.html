@@ -66,11 +66,12 @@
 
     .monogram {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4rem, 15vw, 10rem);
+      font-size: clamp(2.2rem, 11vw, 8rem);
       font-weight: 300;
       color: var(--gold);
       line-height: 1;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
       animation: fadeDown 1.4s ease both;
       text-shadow: 0 0 60px rgba(201, 169, 110, 0.4);
     }
@@ -698,7 +699,7 @@
     <p>With Love &bull; 2026년 11월 7일</p>
   </footer>
 
-  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=sic3bw2rt3"></script>
+  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sic3bw2rt3"></script>
   <script>
     // ── Floating particles ──
     const canvas = document.getElementById('particles');
