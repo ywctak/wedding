@@ -32,6 +32,7 @@
 
     html {
       scroll-behavior: smooth;
+      font-size: 17px;
     }
 
     body {
@@ -116,6 +117,11 @@
       font-size: 0.75rem;
       letter-spacing: 0.15em;
       opacity: 0.75;
+    }
+
+    .splash-time {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
     }
 
     /* ── BGM toggle ── */
@@ -436,15 +442,15 @@
 
     .countdown-number {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.3rem, 5vw, 2.2rem);
+      font-size: clamp(1rem, 4vw, 1.7rem);
       font-weight: 300;
       line-height: 1;
       color: var(--bg);
       background: var(--accent);
-      border-radius: 12px;
-      padding: 0.5rem 0.7rem;
-      min-width: 2.6rem;
-      min-height: 2.6rem;
+      border-radius: 10px;
+      padding: 0.4rem 0.5rem;
+      min-width: 2rem;
+      min-height: 2rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -454,7 +460,6 @@
       font-size: 0.9rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      font-weight: 700;
       opacity: 0.75;
     }
 
@@ -909,10 +914,9 @@
 <body>
 
   <div id="splash">
-    <p class="splash-invite">결혼식</p>
     <p class="splash-invite">초대합니다</p>
     <div class="monogram handwrite">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
-    <p class="splash-date">2026. 11. 07</p>
+    <p class="splash-date">2026.11.07 <span class="splash-time">오후 2시</span></p>
     <p class="splash-venue">압구정 소망교회 선교관 2층</p>
   </div>
 
@@ -937,7 +941,7 @@
   </section>
 
   <!-- 2. Invitation -->
-  <section class="invitation-section">
+  <section class="invitation-section reveal">
     <p class="invitation-title reveal">Invitation</p>
     <p class="reveal">
       2021년 봄, 우연히 함께한 자리에서 처음 마주쳤습니다. 대화를 나눌수록 서로를 더 알고 싶어졌고,
@@ -947,7 +951,7 @@
   </section>
 
   <!-- 3. Our Beginning -->
-  <section class="beginning-section">
+  <section class="beginning-section reveal">
     <p class="invitation-title reveal">Our Beginning</p>
     <div class="parents-grid reveal">
       <span class="parents-role"><span class="name-em">김영동</span> · <span class="name-em">강경량</span> 의 아들</span><span class="parents-name name-em">성은</span>
@@ -956,7 +960,7 @@
   </section>
 
   <!-- 4. Calendar -->
-  <section class="calendar-section">
+  <section class="calendar-section reveal">
     <p class="invitation-title reveal">Calendar</p>
 
     <div class="calendar">
@@ -1036,7 +1040,7 @@
   </section>
 
   <!-- 5. Gallery -->
-  <section class="gallery-section">
+  <section class="gallery-section reveal">
     <p class="invitation-title reveal">Gallery</p>
     <p class="gallery-hint reveal">사진을 클릭하시면 전체화면 보기가 가능해집니다.</p>
     <div class="gallery-grid">
@@ -1062,7 +1066,7 @@
   </div>
 
   <!-- 6. Information -->
-  <section class="info-section">
+  <section class="info-section reveal">
     <p class="invitation-title reveal">Information</p>
     <h2 class="reveal">연회장</h2>
     <p class="info-text reveal">연회장은 지하 1층에 위치하여<br>예식 1시간 전부터 이용하실 수 있습니다.</p>
@@ -1071,7 +1075,7 @@
   </section>
 
   <!-- 7. Location -->
-  <section class="location-section" id="location">
+  <section class="location-section reveal" id="location">
     <p class="section-label">LOCATION</p>
     <h2 class="reveal">오시는 길</h2>
     <div class="address-block reveal">
@@ -1082,7 +1086,7 @@
 
   <div id="map-somang" class="map-full"></div>
 
-  <section class="location-info-section">
+  <section class="location-info-section reveal">
     <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
     <div class="nav-buttons reveal">
       <a class="nav-btn" href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+55+소망교회" target="_blank"
@@ -1104,7 +1108,7 @@
   </section>
 
   <!-- 8. Gift -->
-  <section class="gift-section">
+  <section class="gift-section reveal">
     <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,5vw,3rem);color:var(--bg);margin-bottom:1rem;">
       마음 전하실곳</h2>
     <p class="gift-note">
@@ -1144,7 +1148,7 @@
       splash.classList.add('hidden');
       document.body.style.overflow = '';
       if (ytReady) ytPlayer.playVideo();
-    }, 3000);
+    }, 3500);
 
     // ── Background music (YouTube) ──
     const bgmToggle = document.getElementById('bgm-toggle');
