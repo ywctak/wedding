@@ -422,29 +422,29 @@
     .countdown {
       display: flex;
       justify-content: center;
-      gap: clamp(1.5rem, 6vw, 5rem);
+      gap: clamp(0.6rem, 3vw, 1.5rem);
       margin-top: 2rem;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
 
     .countdown-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
     .countdown-number {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 7vw, 3.6rem);
+      font-size: clamp(1.3rem, 5vw, 2.2rem);
       font-weight: 300;
       line-height: 1;
       color: var(--bg);
       background: var(--accent);
-      border-radius: 14px;
-      padding: 0.7rem 1.1rem;
-      min-width: 4.2rem;
-      min-height: 4.2rem;
+      border-radius: 12px;
+      padding: 0.5rem 0.7rem;
+      min-width: 2.6rem;
+      min-height: 2.6rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1089,6 +1089,8 @@
         rel="noopener">네이버 지도</a>
       <a class="nav-btn" href="https://map.kakao.com/link/to/소망교회,37.5278,127.0271" target="_blank"
         rel="noopener">카카오맵</a>
+      <a class="nav-btn" href="tmap://route?goalname=압구정 소망교회&goalx=127.0271&goaly=37.5278" target="_blank"
+        rel="noopener">T맵</a>
     </div>
 
     <div class="parking-info reveal">
