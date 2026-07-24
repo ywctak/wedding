@@ -11,7 +11,7 @@
   <meta property="og:image" content="https://ywctak.github.io/wedding/og-image.jpg" />
   <meta property="og:url" content="https://ywctak.github.io/wedding/" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Nanum+Pen+Script&family=Montserrat:wght@300;400&display=swap"
     rel="stylesheet" />
   <style>
     *,
@@ -69,31 +69,20 @@
       font-size: clamp(1.8rem, 6vw, 2.6rem);
     }
 
-    .shimmer-text {
-      background: linear-gradient(100deg, var(--bg) 0%, var(--bg) 35%, #fff3d6 50%, var(--bg) 65%, var(--bg) 100%);
-      background-size: 250% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmerSweep 3.2s ease-in-out infinite;
+    .handwrite {
+      font-family: 'Nanum Pen Script', cursive;
+      font-weight: 400;
+      font-size: clamp(2.8rem, 9vw, 4.2rem);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      clip-path: inset(0 100% 0 0);
+      animation: handwriteReveal 2.2s ease forwards;
+      animation-delay: 0.3s;
     }
 
-    #splash .monogram.shimmer-text {
-      color: transparent;
-    }
-
-    #splash .monogram.shimmer-text .ampersand {
-      color: var(--bg);
-      -webkit-text-fill-color: var(--bg);
-    }
-
-    @keyframes shimmerSweep {
-      0% {
-        background-position: 200% 0;
-      }
-
-      100% {
-        background-position: -50% 0;
+    @keyframes handwriteReveal {
+      to {
+        clip-path: inset(0 0 0 0);
       }
     }
 
@@ -112,6 +101,15 @@
     }
 
     /* ── BGM toggle ── */
+    #yt-player-wrap {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     .bgm-toggle {
       position: fixed;
       bottom: 1.5rem;
@@ -894,15 +892,15 @@
 
   <div id="splash">
     <p class="splash-invite">초대합니다</p>
-    <div class="monogram shimmer-text">김성은 <span class="ampersand">&</span> 탁예원</div>
+    <div class="monogram handwrite">김성은 <span class="ampersand">&</span> 탁예원</div>
     <p class="splash-date">2026. 11. 07</p>
   </div>
 
   <div id="paper-texture"></div>
 
-  <audio id="bgm" loop>
-    <source src="bgm.mp3" type="audio/mpeg">
-  </audio>
+  <div id="yt-player-wrap">
+    <div id="yt-player"></div>
+  </div>
   <button id="bgm-toggle" class="bgm-toggle" aria-label="배경음악 재생/정지">
     <span class="bgm-icon">&#9834;</span>
   </button>
@@ -1125,18 +1123,47 @@
     setTimeout(() => {
       splash.classList.add('hidden');
       document.body.style.overflow = '';
-      bgm.play().catch(() => { });
+      if (ytReady) ytPlayer.playVideo();
     }, 3000);
 
-    // ── Background music ──
-    const bgm = document.getElementById('bgm');
+    // ── Background music (YouTube) ──
     const bgmToggle = document.getElementById('bgm-toggle');
+    let ytPlayer;
+    let ytReady = false;
+
+    const ytScript = document.createElement('script');
+    ytScript.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(ytScript);
+
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player('yt-player', {
+        videoId: 'kBQHVCZ4etg',
+        playerVars: {
+          autoplay: 0,
+          loop: 1,
+          playlist: 'kBQHVCZ4etg',
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          modestbranding: 1,
+        },
+        events: {
+          onReady: () => { ytReady = true; },
+          onStateChange: (e) => {
+            bgmToggle.classList.toggle('playing', e.data === YT.PlayerState.PLAYING);
+          },
+        },
+      });
+    };
+
     bgmToggle.addEventListener('click', () => {
-      if (bgm.paused) bgm.play().catch(() => { });
-      else bgm.pause();
+      if (!ytReady) return;
+      if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+        ytPlayer.pauseVideo();
+      } else {
+        ytPlayer.playVideo();
+      }
     });
-    bgm.addEventListener('play', () => bgmToggle.classList.add('playing'));
-    bgm.addEventListener('pause', () => bgmToggle.classList.remove('playing'));
 
     // ── Countdown ──
     const target = new Date('2026-11-07T14:00:00');
