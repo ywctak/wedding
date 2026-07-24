@@ -7,7 +7,7 @@
   <title>우리의 결혼식</title>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="김성은 ♥ 탁예원 결혼합니다" />
-  <meta property="og:description" content="2026년 11월 7일 압구정 소망교회 선교관 2층에서 초대합니다" />
+  <meta property="og:description" content="2026년 11월 7일 토요일 압구정 소망교회 선교관 2층에서 초대합니다" />
   <meta property="og:image" content="https://ywctak.github.io/wedding/og-image.jpg" />
   <meta property="og:url" content="https://ywctak.github.io/wedding/" />
   <link
@@ -439,6 +439,10 @@
       visibility: hidden;
     }
 
+    .calendar-day.sunday {
+      color: #c0392b;
+    }
+
     .calendar-day.highlight {
       background: var(--accent);
       color: var(--bg);
@@ -512,11 +516,18 @@
       border-top: 1px solid rgba(255, 255, 255, 0.25);
     }
 
-    .gift-section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--accent);
+    .gift-divider {
+      width: min(120px, 40%);
+      height: 1px;
+      margin: 0 auto 1.2rem;
+      background: var(--bg);
+      opacity: 0.6;
+    }
+
+    .gift-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
       margin-bottom: 1rem;
     }
 
@@ -897,6 +908,51 @@
       color: var(--accent);
     }
 
+    /* ── Share ── */
+    .share-section {
+      position: relative;
+      z-index: 1;
+      padding: 4.5rem 2rem;
+      text-align: center;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--line);
+    }
+
+    .share-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      max-width: 340px;
+      margin: 1.5rem auto 0;
+    }
+
+    .share-btn {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      font-family: 'Montserrat', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .share-btn-kakao {
+      background: #fee500;
+      border-color: #fee500;
+      color: #391b1b;
+    }
+
+    .share-btn-copy {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .share-btn:hover {
+      opacity: 0.85;
+    }
+
     /* ── Information ── */
     .info-section {
       position: relative;
@@ -958,7 +1014,7 @@
     <div class="splash-box">
       <p class="splash-wedding-of">Wedding of</p>
       <div class="monogram handwrite">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
-      <p class="splash-date">2026년 11월 7일 오후 14:00</p>
+      <p class="splash-date">2026년 11월 7일 토요일 오후 14:00</p>
       <p class="splash-venue">압구정 소망교회 선교관 2층</p>
     </div>
   </div>
@@ -979,7 +1035,7 @@
     <div class="monogram">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
     <div class="tagline">Our Wedding Day</div>
     <div class="divider"><span class="divider-icon">&#9670;</span></div>
-    <div class="date-text">2026년 11월 7일 오후 14:00</div>
+    <div class="date-text">2026년 11월 7일 토요일 오후 14:00</div>
     <p class="location">압구정 소망교회 선교관 2층</p>
   </section>
 
@@ -995,7 +1051,6 @@
 
   <!-- 3. Our Beginning -->
   <section class="beginning-section reveal">
-    <p class="invitation-title reveal">Our Beginning</p>
     <div class="parents-grid reveal">
       <span class="parents-role"><span class="name-em">김영동</span> · <span class="name-em">강경량</span> 의 아들</span><span class="parents-name name-em">성은</span>
       <span class="parents-role"><span class="name-em">탁영진</span> · <span class="name-em">박현주</span> 의 딸</span><span class="parents-name name-em">예원</span>
@@ -1005,7 +1060,7 @@
   <!-- 4. Calendar -->
   <section class="calendar-section reveal">
     <p class="invitation-title reveal">Calendar</p>
-    <p class="date-text reveal" style="font-family: 'Montserrat', serif;">2026년 11월 7일 오후 14:00</p>
+    <p class="date-text reveal" style="font-family: 'Montserrat', serif;">2026년 11월 7일 토요일 오후 14:00</p>
 
     <div class="calendar">
       <p class="calendar-month">NOVEMBER 2026</p>
@@ -1018,7 +1073,7 @@
         <span class="calendar-weekday">금</span>
         <span class="calendar-weekday">토</span>
 
-        <span class="calendar-day">1</span>
+        <span class="calendar-day sunday">1</span>
         <span class="calendar-day">2</span>
         <span class="calendar-day">3</span>
         <span class="calendar-day">4</span>
@@ -1026,7 +1081,7 @@
         <span class="calendar-day">6</span>
         <span class="calendar-day highlight">7</span>
 
-        <span class="calendar-day">8</span>
+        <span class="calendar-day sunday">8</span>
         <span class="calendar-day">9</span>
         <span class="calendar-day">10</span>
         <span class="calendar-day">11</span>
@@ -1034,7 +1089,7 @@
         <span class="calendar-day">13</span>
         <span class="calendar-day">14</span>
 
-        <span class="calendar-day">15</span>
+        <span class="calendar-day sunday">15</span>
         <span class="calendar-day">16</span>
         <span class="calendar-day">17</span>
         <span class="calendar-day">18</span>
@@ -1042,7 +1097,7 @@
         <span class="calendar-day">20</span>
         <span class="calendar-day">21</span>
 
-        <span class="calendar-day">22</span>
+        <span class="calendar-day sunday">22</span>
         <span class="calendar-day">23</span>
         <span class="calendar-day">24</span>
         <span class="calendar-day">25</span>
@@ -1050,7 +1105,7 @@
         <span class="calendar-day">27</span>
         <span class="calendar-day">28</span>
 
-        <span class="calendar-day">29</span>
+        <span class="calendar-day sunday">29</span>
         <span class="calendar-day">30</span>
         <span class="calendar-day empty"></span>
         <span class="calendar-day empty"></span>
@@ -1159,8 +1214,8 @@
 
   <!-- 8. Gift -->
   <section class="gift-section reveal">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,5vw,3rem);color:var(--bg);margin-bottom:1rem;">
-      마음 전하실곳</h2>
+    <div class="gift-divider"></div>
+    <p class="gift-title">마음 전하실곳</p>
     <p class="gift-note">
       참석이 어려우신 분들을 위해 기재했습니다.<br>너그러운 마음으로 양해 부탁드립니다.
     </p>
@@ -1179,6 +1234,15 @@
           <button class="copy-btn" data-account="0000-000-000000">복사</button>
         </div>
       </details>
+    </div>
+  </section>
+
+  <!-- 9. Share -->
+  <section class="share-section reveal">
+    <p class="section-label">SHARE</p>
+    <div class="share-buttons">
+      <button id="kakao-share-btn" class="share-btn share-btn-kakao">카카오톡으로 청첩장 전하기</button>
+      <button id="copy-link-btn" class="share-btn share-btn-copy">청첩장 주소 복사하기</button>
     </div>
   </section>
 
@@ -1304,6 +1368,38 @@
           btn.textContent = '복사됨';
           setTimeout(() => { btn.textContent = original; }, 1500);
         });
+      });
+    });
+
+    // ── Share buttons ──
+    const kakaoShareBtn = document.getElementById('kakao-share-btn');
+    const copyLinkBtn = document.getElementById('copy-link-btn');
+
+    kakaoShareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: '김성은 ♥ 탁예원 결혼합니다',
+        text: '2026년 11월 7일 토요일, 저희 두 사람의 결혼식에 초대합니다.',
+        url: location.href,
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          // 사용자가 공유를 취소한 경우 등은 무시
+        }
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        const original = kakaoShareBtn.textContent;
+        kakaoShareBtn.textContent = '주소가 복사되었어요. 카카오톡에 붙여넣어 주세요';
+        setTimeout(() => { kakaoShareBtn.textContent = original; }, 2200);
+      }
+    });
+
+    copyLinkBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(location.href).then(() => {
+        const original = copyLinkBtn.textContent;
+        copyLinkBtn.textContent = '복사되었습니다';
+        setTimeout(() => { copyLinkBtn.textContent = original; }, 1500);
       });
     });
 
