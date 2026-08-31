@@ -954,9 +954,20 @@
     }
 
     .theme-switch-btn {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
       text-decoration: none;
       text-align: center;
+    }
+
+    .theme-switch-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: 0 0 auto;
     }
 
     /* ── Information ── */
@@ -1247,7 +1258,10 @@
     <div class="share-buttons">
       <button id="kakao-share-btn" class="share-btn share-btn-kakao">카카오톡으로 청첩장 전하기</button>
       <button id="copy-link-btn" class="share-btn share-btn-copy">청첩장 주소 복사하기</button>
-      <a class="share-btn share-btn-copy theme-switch-btn" href="index_ponyo.html">청첩장 포뇨 버전</a>
+      <a class="share-btn share-btn-copy theme-switch-btn" href="index_ponyo.html">
+        <span>청첩장 포뇨 버전</span>
+        <img class="theme-switch-logo" src="ponyo/ponyo_logo.jpeg" alt="" aria-hidden="true" />
+      </a>
     </div>
   </section>
 
