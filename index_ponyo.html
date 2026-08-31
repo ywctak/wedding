@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>우리의 결혼식</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="김성은 ♥ 탁예원 결혼합니다" />
+  <meta property="og:description" content="2026년 11월 7일 토요일 압구정 소망교회 선교관 2층에서 초대합니다" />
+  <meta property="og:image" content="https://ywctak.github.io/wedding/og-image.jpg" />
+  <meta property="og:url" content="https://ywctak.github.io/wedding/" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Nanum+Pen+Script&family=Montserrat:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --accent: #800020;
+      --ink: #2c2a28;
+      --bg: #faf6ee;
+      --bg-alt: #f3efe4;
+      --line: rgba(128, 0, 32, 0.18);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px;
+    }
+
+    body {
+      background: #dcecf4;
+      color: var(--ink);
+      font-family: 'Montserrat', serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── Watercolor sky background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to bottom, rgba(235, 247, 252, 0.18), rgba(255, 248, 239, 0.28)),
+        url('sky/bright-colors-with-blue-watercolor-gradient_100956-547.avif'),
+        url('sky/hand-painted-pastel-blue-alcohol-ink-design-background_1048-21392.avif'),
+        url('sky/pngtree-realistic-blue-sky-and-white-clouds-watercolor-wallpaper-background-image_981927.jpg');
+      background-size: cover, cover, cover, cover;
+      background-position: center, center top, center 35%, center;
+      background-repeat: no-repeat;
+      background-blend-mode: normal, soft-light, screen, normal;
+      filter: saturate(0.82) brightness(1.05);
+      transform: translateZ(0);
+    }
+
+    /* ── Splash ── */
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      text-align: center;
+      background: var(--accent);
+      color: var(--bg);
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    #splash.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #splash .monogram {
+      color: var(--bg);
+    }
+
+    .splash-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: 2.2rem 2.4rem;
+      border: 1px solid var(--bg);
+    }
+
+    .handwrite {
+      font-family: 'Nanum Pen Script', cursive;
+      font-weight: 400;
+      font-size: clamp(3.05rem, 9vw, 4.45rem);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      position: relative;
+      display: inline-block;
+    }
+
+    .handwrite::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.3rem;
+      width: 100%;
+      height: 2px;
+      background: var(--bg);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: underlineDraw 1.2s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes underlineDraw {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .splash-invite {
+      font-size: 1rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .splash-wedding-of {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    .splash-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.3em;
+      opacity: 0.85;
+    }
+
+    .splash-venue {
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      opacity: 0.75;
+    }
+
+    /* ── BGM toggle ── */
+    #yt-player-wrap {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .bgm-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 90;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      background: var(--bg);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .bgm-icon {
+      display: inline-block;
+      opacity: 0.4;
+      transition: opacity 0.3s;
+    }
+
+    .bgm-toggle.playing .bgm-icon {
+      opacity: 1;
+      animation: bgmSpin 3s linear infinite;
+    }
+
+    @keyframes bgmSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 2rem;
+      z-index: 1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .hero-photo {
+      position: relative;
+      width: min(78vw, 400px);
+      aspect-ratio: 4/5;
+      margin: 0 auto 2.2rem;
+      background: linear-gradient(135deg, rgba(128, 0, 32, 0.18), rgba(128, 0, 32, 0.05));
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: rgba(120, 100, 70, 0.45);
+      letter-spacing: 0.1em;
+      animation: fadeIn 1.4s ease both;
+    }
+
+    .hero-photo-caption {
+      position: absolute;
+      top: 1.8rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      line-height: 1.3;
+      color: var(--bg);
+      pointer-events: none;
+    }
+
+    .monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      animation: fadeDown 1.4s 0.2s ease both;
+    }
+
+    .ampersand {
+      font-style: italic;
+      opacity: 0.7;
+    }
+
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      margin-top: 0.5rem;
+      animation: fadeDown 1.4s 0.4s ease both;
+      opacity: 0;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem auto;
+      width: min(320px, 80%);
+      animation: fadeIn 1.4s 0.7s ease both;
+      opacity: 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+    }
+
+    .divider-icon {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .date-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      letter-spacing: 0.3em;
+      animation: fadeIn 1.4s 0.9s ease both;
+      opacity: 0;
+    }
+
+    .location {
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-top: 0.5rem;
+      animation: fadeIn 1.4s 1.1s ease both;
+    }
+
+    /* ── Invitation / Our Beginning ── */
+    .invitation-section,
+    .beginning-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      text-align: center;
+      background: rgba(128, 0, 32, 0.88);
+      color: var(--bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .invitation-section p:not(.invitation-title) {
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.9;
+      opacity: 0.9;
+      font-size: 0.9rem;
+    }
+
+    .invitation-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.4rem, 8vw, 3.6rem);
+      color: var(--accent);
+      margin-bottom: 2.4rem;
+    }
+
+    .invitation-section .invitation-title,
+    .beginning-section .invitation-title,
+    .gallery-section .invitation-title {
+      color: var(--bg);
+    }
+
+    .parents-grid {
+      display: inline-grid;
+      grid-template-columns: auto auto;
+      column-gap: 2rem;
+      row-gap: 1.4rem;
+      text-align: left;
+    }
+
+    .parents-role {
+      text-align: left;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+    }
+
+    .parents-name {
+      text-align: left;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+    }
+
+    .name-em {
+      font-weight: 700;
+      letter-spacing: 0.25em;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .location-section .section-label {
+      color: var(--bg);
+    }
+
+    /* ── Calendar ── */
+    .calendar-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      text-align: center;
+      background: rgba(250, 246, 238, 0.78);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .calendar {
+      max-width: 320px;
+      margin: 2rem auto 0;
+      padding: 1.6rem 1.2rem;
+      border: 1px solid var(--line);
+      background: rgba(250, 246, 238, 0.88);
+      color: var(--ink);
+    }
+
+    .calendar-month {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.3rem;
+    }
+
+    .calendar-weekday {
+      font-size: 0.55rem;
+      letter-spacing: 0.05em;
+      opacity: 0.45;
+      padding-bottom: 0.5rem;
+    }
+
+    .calendar-weekday:first-child {
+      color: #c0392b;
+      opacity: 0.7;
+    }
+
+    .calendar-weekday:last-child {
+      color: #2b5fc0;
+      opacity: 0.7;
+    }
+
+    .calendar-day {
+      font-size: 0.72rem;
+      padding: 0.5rem 0;
+      border-radius: 50%;
+    }
+
+    .calendar-day.empty {
+      visibility: hidden;
+    }
+
+    .calendar-day.sunday {
+      color: #c0392b;
+    }
+
+    .calendar-day.highlight {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 0 0 4px rgba(128, 0, 32, 0.15);
+    }
+
+    .calendar-section h2 {
+      margin-top: 2.5rem;
+    }
+
+    .countdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.3rem, 1.5vw, 0.8rem);
+      margin-top: 2rem;
+      flex-wrap: nowrap;
+    }
+
+    .countdown-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      color: var(--bg);
+      background: var(--accent);
+      border-radius: 12px;
+      padding: 0.9rem 0.6rem;
+      min-width: 3rem;
+      min-height: 4.4rem;
+    }
+
+    .countdown-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .countdown-colon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      font-weight: 300;
+      color: #000000;
+      line-height: 1;
+    }
+
+    .countdown-summary {
+      margin-top: 1.2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      color: #000000;
+    }
+
+    /* ── Gallery ── */
+    .gallery-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 1rem;
+      text-align: center;
+      background: rgba(128, 0, 32, 0.88);
+      color: var(--bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .gift-divider {
+      width: min(120px, 40%);
+      height: 1px;
+      margin: 0 auto 1.2rem;
+      background: var(--bg);
+      opacity: 0.6;
+    }
+
+    .gift-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .info-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .gallery-hint {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      letter-spacing: 0.03em;
+      margin-bottom: 2.5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.35rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 1.3rem;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover {
+      opacity: 0.7;
+    }
+
+    .gallery-item-extra {
+      display: none;
+    }
+
+    .gallery-grid.expanded .gallery-item-extra {
+      display: flex;
+    }
+
+    .gallery-more {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.8rem;
+      border: 1px solid var(--bg);
+      background: transparent;
+      color: var(--bg);
+      font-family: 'Montserrat', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .gallery-more:hover {
+      background: var(--bg);
+      color: var(--accent);
+    }
+
+    .gallery-more.is-hidden {
+      display: none;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 18, 15, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      width: min(80vw, 460px);
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, rgba(128, 0, 32, 0.28), rgba(128, 0, 32, 0.08));
+      border: 1px solid rgba(128, 0, 32, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      color: #faf6f0;
+      font-size: 1.8rem;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      color: #faf6f0;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(128, 0, 32, 0.9);
+      color: var(--bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      opacity: 0.6;
+      margin-top: 0.6rem;
+    }
+
+    /* ── Location ── */
+    .location-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem 3rem;
+      text-align: center;
+      background: rgba(250, 246, 238, 0.78);
+      border-top: 1px solid var(--line);
+    }
+
+    .location-section h2 {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .address-block {
+      margin: 2rem auto;
+      max-width: 500px;
+    }
+
+    .address-main {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      opacity: 0.65;
+      margin-bottom: 0.5rem;
+    }
+
+    .address-detail {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.34rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .map-frame {
+      max-width: min(78vw, 400px);
+      margin: 0 auto;
+      border: 2px solid var(--accent);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    .map-full {
+      width: 100%;
+      height: 8cm;
+      display: block;
+    }
+
+    .map-marker-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 10px rgba(128, 0, 32, 0.8);
+    }
+
+    .naver-infowindow {
+      background: #1a1a2e;
+      color: #faf6f0;
+      border: 1px solid rgba(128, 0, 32, 0.35);
+      border-radius: 2px;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 0.9rem;
+      font-family: 'Montserrat', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .location-info-section {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem 6rem;
+      text-align: center;
+      background: rgba(250, 246, 238, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-hint {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      opacity: 0.45;
+      margin: 1.5rem auto 0.8rem;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+    }
+
+    .nav-btn {
+      padding: 0.7rem 1.5rem;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-family: 'Montserrat', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: translateX(-101%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+
+    .nav-btn:hover {
+      color: var(--bg);
+    }
+
+    .nav-btn:hover::before {
+      transform: translateX(0);
+    }
+
+    .parking-info {
+      max-width: 460px;
+      margin: 0 auto 1.5rem;
+      padding: 1.3rem 1.6rem;
+      border: 1px solid var(--line);
+      background: var(--bg-alt);
+      color: var(--ink);
+      text-align: left;
+    }
+
+    .parking-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.08em;
+    }
+
+    .parking-text {
+      font-size: 0.83rem;
+      line-height: 1.85;
+      opacity: 0.65;
+    }
+
+    /* ── Gift / Account ── */
+    .gift-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      text-align: center;
+      background: rgba(128, 0, 32, 0.88);
+      color: var(--bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .gift-note {
+      font-size: 0.82rem;
+      line-height: 1.9;
+      opacity: 0.75;
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .account-list {
+      max-width: 420px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      text-align: left;
+    }
+
+    .account-item {
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .account-item summary {
+      padding: 1rem 1.3rem;
+      cursor: pointer;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .account-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .account-item summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      transition: transform 0.25s;
+    }
+
+    .account-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .account-detail {
+      padding: 0 1.3rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.83rem;
+      opacity: 0.75;
+    }
+
+    .copy-btn {
+      border: 1px solid var(--line);
+      background: none;
+      color: var(--ink);
+      font-size: 0.66rem;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.7rem;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'Montserrat', serif;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── Share ── */
+    .share-section {
+      position: relative;
+      z-index: 1;
+      padding: 4.5rem 2rem;
+      text-align: center;
+      background: rgba(243, 239, 228, 0.8);
+      border-top: 1px solid var(--line);
+    }
+
+    .share-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      max-width: 340px;
+      margin: 1.5rem auto 0;
+    }
+
+    .share-btn {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      font-family: 'Montserrat', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .share-btn-kakao {
+      background: #fee500;
+      border-color: #fee500;
+      color: #391b1b;
+    }
+
+    .share-btn-copy {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .share-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* ── Information ── */
+    .info-section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      text-align: center;
+      background: rgba(250, 246, 238, 0.78);
+      border-top: 1px solid var(--line);
+    }
+
+    .info-text {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      opacity: 0.65;
+      max-width: 420px;
+      margin: 1rem auto;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="splash">
+    <p class="splash-invite">초대합니다</p>
+    <div class="splash-box">
+      <p class="splash-wedding-of">Wedding of</p>
+      <div class="monogram handwrite">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
+      <p class="splash-date">2026년 11월 7일 토요일 오후 14:00</p>
+      <p class="splash-venue">압구정 소망교회 선교관 2층</p>
+    </div>
+  </div>
+
+  <div id="yt-player-wrap">
+    <div id="yt-player"></div>
+  </div>
+  <button id="bgm-toggle" class="bgm-toggle" aria-label="배경음악 재생/정지">
+    <span class="bgm-icon">&#9834;</span>
+  </button>
+
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="hero-photo">
+      사진
+      <div class="hero-photo-caption">We are getting<br>Married</div>
+    </div>
+    <div class="monogram">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
+    <div class="tagline">Our Wedding Day</div>
+    <div class="divider"><span class="divider-icon">&#9670;</span></div>
+    <div class="date-text">2026년 11월 7일 토요일 오후 14:00</div>
+    <p class="location">압구정 소망교회 선교관 2층</p>
+  </section>
+
+  <!-- 2. Invitation -->
+  <section class="invitation-section reveal">
+    <p class="invitation-title reveal">Invitation</p>
+    <p class="reveal">
+      2021년 봄, 우연히 함께한 자리에서 처음 마주쳤습니다. 대화를 나눌수록 서로를 더 알고 싶어졌고,
+      자연스럽게 서로의 일상 속으로 스며들었습니다. 함께한 시간이 쌓여갈수록 확신은 더 깊어졌고,
+      이제 두 사람이 아닌 하나의 이름으로 새로운 이야기를 시작하려 합니다. 저희의 시작을 함께 축하해 주세요.
+    </p>
+  </section>
+
+  <!-- 3. Our Beginning -->
+  <section class="beginning-section reveal">
+    <div class="parents-grid reveal">
+      <span class="parents-role"><span class="name-em">김영동</span> · <span class="name-em">강경량</span> 의 아들</span><span class="parents-name name-em">성은</span>
+      <span class="parents-role"><span class="name-em">탁영진</span> · <span class="name-em">박현주</span> 의 딸</span><span class="parents-name name-em">예원</span>
+    </div>
+  </section>
+
+  <!-- 4. Calendar -->
+  <section class="calendar-section reveal">
+    <p class="invitation-title reveal">Calendar</p>
+    <p class="date-text reveal" style="font-family: 'Montserrat', serif;">2026년 11월 7일 토요일 오후 14:00</p>
+
+    <div class="calendar">
+      <p class="calendar-month">NOVEMBER 2026</p>
+      <div class="calendar-grid">
+        <span class="calendar-weekday">일</span>
+        <span class="calendar-weekday">월</span>
+        <span class="calendar-weekday">화</span>
+        <span class="calendar-weekday">수</span>
+        <span class="calendar-weekday">목</span>
+        <span class="calendar-weekday">금</span>
+        <span class="calendar-weekday">토</span>
+
+        <span class="calendar-day sunday">1</span>
+        <span class="calendar-day">2</span>
+        <span class="calendar-day">3</span>
+        <span class="calendar-day">4</span>
+        <span class="calendar-day">5</span>
+        <span class="calendar-day">6</span>
+        <span class="calendar-day highlight">7</span>
+
+        <span class="calendar-day sunday">8</span>
+        <span class="calendar-day">9</span>
+        <span class="calendar-day">10</span>
+        <span class="calendar-day">11</span>
+        <span class="calendar-day">12</span>
+        <span class="calendar-day">13</span>
+        <span class="calendar-day">14</span>
+
+        <span class="calendar-day sunday">15</span>
+        <span class="calendar-day">16</span>
+        <span class="calendar-day">17</span>
+        <span class="calendar-day">18</span>
+        <span class="calendar-day">19</span>
+        <span class="calendar-day">20</span>
+        <span class="calendar-day">21</span>
+
+        <span class="calendar-day sunday">22</span>
+        <span class="calendar-day">23</span>
+        <span class="calendar-day">24</span>
+        <span class="calendar-day">25</span>
+        <span class="calendar-day">26</span>
+        <span class="calendar-day">27</span>
+        <span class="calendar-day">28</span>
+
+        <span class="calendar-day sunday">29</span>
+        <span class="calendar-day">30</span>
+        <span class="calendar-day empty"></span>
+        <span class="calendar-day empty"></span>
+        <span class="calendar-day empty"></span>
+        <span class="calendar-day empty"></span>
+        <span class="calendar-day empty"></span>
+      </div>
+    </div>
+
+    <h2
+      style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.2rem;letter-spacing:0.15em;color:var(--accent)">
+      D-DAY</h2>
+    <div class="countdown">
+      <div class="countdown-box">
+        <span class="countdown-number" id="cd-days">000</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <span class="countdown-colon">:</span>
+      <div class="countdown-box">
+        <span class="countdown-number" id="cd-hours">00</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <span class="countdown-colon">:</span>
+      <div class="countdown-box">
+        <span class="countdown-number" id="cd-mins">00</span>
+        <span class="countdown-label">Mins</span>
+      </div>
+      <span class="countdown-colon">:</span>
+      <div class="countdown-box">
+        <span class="countdown-number" id="cd-secs">00</span>
+        <span class="countdown-label">Sec</span>
+      </div>
+    </div>
+    <p class="countdown-summary">김성은 & 탁예원 의 결혼식이 <b id="cd-days-text">0</b>일 남았습니다</p>
+  </section>
+
+  <!-- 5. Gallery -->
+  <section class="gallery-section reveal">
+    <p class="invitation-title reveal">Gallery</p>
+    <p class="gallery-hint reveal">사진을 클릭하시면 전체화면 보기가 가능해집니다.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-index="1">1</div>
+      <div class="gallery-item" data-index="2">2</div>
+      <div class="gallery-item" data-index="3">3</div>
+      <div class="gallery-item" data-index="4">4</div>
+      <div class="gallery-item" data-index="5">5</div>
+      <div class="gallery-item" data-index="6">6</div>
+      <div class="gallery-item gallery-item-extra" data-index="7">7</div>
+      <div class="gallery-item gallery-item-extra" data-index="8">8</div>
+      <div class="gallery-item gallery-item-extra" data-index="9">9</div>
+      <div class="gallery-item gallery-item-extra" data-index="10">10</div>
+      <div class="gallery-item gallery-item-extra" data-index="11">11</div>
+      <div class="gallery-item gallery-item-extra" data-index="12">12</div>
+    </div>
+    <button class="gallery-more" id="gallery-more">더보기</button>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&times;</button>
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
+
+  <!-- 6. Information -->
+  <section class="info-section reveal">
+    <p class="invitation-title reveal">Information</p>
+    <h2 class="reveal">연회장</h2>
+    <p class="info-text reveal">연회장은 지하 1층에 위치하여<br>예식 1시간 전부터 이용하실 수 있습니다.</p>
+    <div class="divider reveal"><span class="divider-icon">&#9670;</span></div>
+    <p class="info-text reveal">화환은 정중히 사양합니다.<br>따뜻한 마음에 깊이 감사드립니다.</p>
+  </section>
+
+  <!-- 7. Location -->
+  <section class="location-section reveal" id="location">
+    <p class="section-label">LOCATION</p>
+    <h2 class="reveal">Location</h2>
+    <div class="address-block reveal">
+      <p class="address-detail">압구정 소망교회 선교관 2층</p>
+      <p class="address-main">주소: 서울특별시 강남구 압구정로36길 55 소망교회</p>
+    </div>
+  </section>
+
+  <div class="map-frame">
+    <div id="map-somang" class="map-full"></div>
+  </div>
+
+  <section class="location-info-section reveal">
+    <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
+    <div class="nav-buttons reveal">
+      <a class="nav-btn" href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+55+소망교회" target="_blank"
+        rel="noopener">네이버 지도</a>
+      <a class="nav-btn" href="https://map.kakao.com/link/to/소망교회,37.5278,127.0271" target="_blank"
+        rel="noopener">카카오맵</a>
+      <a class="nav-btn" href="tmap://route?goalname=압구정 소망교회&goalx=127.0271&goaly=37.5278" target="_blank"
+        rel="noopener">T맵</a>
+    </div>
+
+    <div class="parking-info reveal">
+      <p class="parking-title">지하철</p>
+      <p class="parking-text">압구정역 3번 출구에서 도보 5분 거리에 있습니다.</p>
+    </div>
+    <div class="parking-info reveal">
+      <p class="parking-title">주차</p>
+      <p class="parking-text">소망교회 혹은 신구중학교에 주차하실 수 있습니다.<br>대중교통을 이용하시는 것이 더욱 편리합니다.</p>
+    </div>
+  </section>
+
+  <!-- 8. Gift -->
+  <section class="gift-section reveal">
+    <div class="gift-divider"></div>
+    <p class="gift-title">마음 전하실곳</p>
+    <p class="gift-note">
+      참석이 어려우신 분들을 위해 기재했습니다.<br>너그러운 마음으로 양해 부탁드립니다.
+    </p>
+    <div class="account-list">
+      <details class="account-item">
+        <summary>신랑측에게</summary>
+        <div class="account-detail">
+          <span>김성은 · 우리은행 0000-000-000000</span>
+          <button class="copy-btn" data-account="0000-000-000000">복사</button>
+        </div>
+      </details>
+      <details class="account-item">
+        <summary>신부측에게</summary>
+        <div class="account-detail">
+          <span>탁예원 · 하나은행 0000-000-000000</span>
+          <button class="copy-btn" data-account="0000-000-000000">복사</button>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 9. Share -->
+  <section class="share-section reveal">
+    <p class="section-label">SHARE</p>
+    <div class="share-buttons">
+      <button id="kakao-share-btn" class="share-btn share-btn-kakao">카카오톡으로 청첩장 전하기</button>
+      <button id="copy-link-btn" class="share-btn share-btn-copy">청첩장 주소 복사하기</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Handmade by</p>
+    <p>신부 탁예원</p>
+    <p>&#9825;</p>
+  </footer>
+
+  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=sic3bw2rt3&submodules=geocoder"></script>
+  <script>
+    // ── Splash ──
+    const splash = document.getElementById('splash');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      splash.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (ytReady) ytPlayer.playVideo();
+    }, 3500);
+
+    // ── Background music (YouTube) ──
+    const bgmToggle = document.getElementById('bgm-toggle');
+    let ytPlayer;
+    let ytReady = false;
+
+    const ytScript = document.createElement('script');
+    ytScript.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(ytScript);
+
+    window.onYouTubeIframeAPIReady = function () {
+      ytPlayer = new YT.Player('yt-player', {
+        videoId: 'kBQHVCZ4etg',
+        playerVars: {
+          autoplay: 0,
+          loop: 1,
+          playlist: 'kBQHVCZ4etg',
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          modestbranding: 1,
+        },
+        events: {
+          onReady: () => { ytReady = true; },
+          onStateChange: (e) => {
+            bgmToggle.classList.toggle('playing', e.data === YT.PlayerState.PLAYING);
+          },
+        },
+      });
+    };
+
+    bgmToggle.addEventListener('click', () => {
+      if (!ytReady) return;
+      if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+        ytPlayer.pauseVideo();
+      } else {
+        ytPlayer.playVideo();
+      }
+    });
+
+    // ── Countdown ──
+    const target = new Date('2026-11-07T14:00:00');
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '000';
+        document.getElementById('cd-days-text').textContent = '0';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(3, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+      document.getElementById('cd-days-text').textContent = String(d);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Gallery lightbox ──
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightbox-content');
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+    }
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxContent.textContent = item.textContent;
+        lightbox.classList.add('active');
+      });
+    });
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ── Gallery show more ──
+    document.getElementById('gallery-more').addEventListener('click', (e) => {
+      document.querySelector('.gallery-grid').classList.add('expanded');
+      e.target.classList.add('is-hidden');
+    });
+
+    // ── Account copy buttons ──
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(btn.dataset.account).then(() => {
+          const original = btn.textContent;
+          btn.textContent = '복사됨';
+          setTimeout(() => { btn.textContent = original; }, 1500);
+        });
+      });
+    });
+
+    // ── Share buttons ──
+    const kakaoShareBtn = document.getElementById('kakao-share-btn');
+    const copyLinkBtn = document.getElementById('copy-link-btn');
+
+    kakaoShareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: '김성은 ♥ 탁예원 결혼합니다',
+        text: '2026년 11월 7일 토요일, 저희 두 사람의 결혼식에 초대합니다.',
+        url: location.href,
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          // 사용자가 공유를 취소한 경우 등은 무시
+        }
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        const original = kakaoShareBtn.textContent;
+        kakaoShareBtn.textContent = '주소가 복사되었어요. 카카오톡에 붙여넣어 주세요';
+        setTimeout(() => { kakaoShareBtn.textContent = original; }, 2200);
+      }
+    });
+
+    copyLinkBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(location.href).then(() => {
+        const original = copyLinkBtn.textContent;
+        copyLinkBtn.textContent = '복사되었습니다';
+        setTimeout(() => { copyLinkBtn.textContent = original; }, 1500);
+      });
+    });
+
+    // ── NAVER Maps ──
+    function renderNaverMap(elId, position, label) {
+      const map = new naver.maps.Map(elId, {
+        center: position,
+        zoom: 18,
+        zoomControl: false,
+        scrollWheel: false,
+        scaleControl: true,
+        scaleControlOptions: { position: naver.maps.Position.BOTTOM_LEFT },
+      });
+      const marker = new naver.maps.Marker({
+        position,
+        map,
+        icon: {
+          content: '<div class="map-marker-dot"></div>',
+          size: new naver.maps.Size(16, 16),
+          anchor: new naver.maps.Point(8, 8),
+        },
+      });
+      const infoWindow = new naver.maps.InfoWindow({
+        content: `<div class="naver-infowindow">${label}</div>`,
+        borderWidth: 0,
+        backgroundColor: 'transparent',
+        disableAnchor: true,
+        pixelOffset: new naver.maps.Point(0, -10),
+      });
+      infoWindow.open(map, marker);
+      naver.maps.Event.addListener(marker, 'click', () => {
+        if (infoWindow.getMap()) infoWindow.close();
+        else infoWindow.open(map, marker);
+      });
+    }
+
+    // 주소를 지오코딩해서 정확한 좌표를 찾고, 실패 시 fallback 좌표를 사용
+    function initNaverMapByAddress(elId, address, label, fallbackLat, fallbackLng) {
+      const fallback = new naver.maps.LatLng(fallbackLat, fallbackLng);
+      if (!naver.maps.Service) {
+        renderNaverMap(elId, fallback, label);
+        return;
+      }
+      naver.maps.Service.geocode({ query: address }, (status, response) => {
+        if (status === naver.maps.Service.Status.OK && response.v2.addresses.length > 0) {
+          const addr = response.v2.addresses[0];
+          renderNaverMap(elId, new naver.maps.LatLng(addr.y, addr.x), label);
+        } else {
+          renderNaverMap(elId, fallback, label);
+        }
+      });
+    }
+
+    if (typeof naver !== 'undefined') {
+      initNaverMapByAddress('map-somang', '서울 강남구 압구정로36길 55 소망교회', '압구정 소망교회 선교관 2층', 37.5278, 127.0271);
+    }
+  </script>
+</body>
+
+</html>
