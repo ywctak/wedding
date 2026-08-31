@@ -121,8 +121,15 @@
     }
 
     @keyframes heartBeat {
-      0%, 100% { transform: scale(1); }
-      45% { transform: scale(1.14); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.14);
+      }
     }
 
     .splash-box {
@@ -831,7 +838,7 @@
     .nav-buttons {
       display: flex;
       justify-content: center;
-      gap: 0.35rem;
+      gap: 0.2rem;
       flex-wrap: nowrap;
       width: 100%;
       max-width: 420px;
@@ -841,13 +848,13 @@
     .nav-btn {
       flex: 1 1 0;
       min-width: 0;
-      padding: 0.65rem 0.25rem;
+      padding: 0.55rem 0.1rem;
       border: 1px solid var(--accent);
       background: transparent;
       color: var(--accent);
       font-family: 'Montserrat', serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.03em;
+      font-size: 0.55rem;
+      letter-spacing: 0;
       white-space: nowrap;
       text-decoration: none;
       transition: color 0.3s;
@@ -856,12 +863,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.22rem;
     }
 
     .map-icon {
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
       border-radius: 5px;
       display: inline-flex;
       align-items: center;
@@ -869,15 +876,24 @@
       flex: 0 0 auto;
       color: #fff;
       font-family: Arial, sans-serif;
-      font-size: 0.66rem;
+      font-size: 0.58rem;
       font-weight: 700;
       line-height: 1;
       letter-spacing: 0;
     }
 
-    .map-icon-naver { background: #03c75a; }
-    .map-icon-kakao { background: #fee500; color: #391b1b; }
-    .map-icon-tmap { background: #e9465b; }
+    .map-icon-naver {
+      background: #03c75a;
+    }
+
+    .map-icon-kakao {
+      background: #fee500;
+      color: #391b1b;
+    }
+
+    .map-icon-tmap {
+      background: #e9465b;
+    }
 
     .nav-btn::before {
       content: '';
@@ -1140,7 +1156,7 @@
     <div class="monogram">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
     <div class="tagline">Our Wedding Day</div>
     <div class="divider"><span class="divider-icon">&#9670;</span></div>
-    <div class="date-text">2026년 11월 7일 토요일 오후 14:00</div>
+    <div class="date-text">2026년 11월 7일 토요일 <br> 오후 14:00</div>
     <p class="location">압구정 소망교회 선교관 2층</p>
   </section>
 
@@ -1159,8 +1175,10 @@
   <!-- 3. Our Beginning -->
   <section class="beginning-section reveal">
     <div class="parents-grid reveal">
-      <span class="parents-role"><span class="name-em">김영동</span> · <span class="name-em">강경량</span> 의 아들</span><span class="parents-name name-em">성은</span>
-      <span class="parents-role"><span class="name-em">탁영진</span> · <span class="name-em">박현주</span> 의 딸</span><span class="parents-name name-em">예원</span>
+      <span class="parents-role"><span class="name-em">김영동</span> · <span class="name-em">강경량</span> 의 아들</span><span
+        class="parents-name name-em">성은</span>
+      <span class="parents-role"><span class="name-em">탁영진</span> · <span class="name-em">박현주</span> 의 딸</span><span
+        class="parents-name name-em">예원</span>
     </div>
   </section>
 
@@ -1279,7 +1297,8 @@
 
   <!-- 6. Information -->
   <section class="info-section reveal">
-    <img class="section-art section-art-compact reveal" src="ponyo/Information.png" alt="라면을 먹는 포뇨와 소스케" loading="lazy" />
+    <img class="section-art section-art-compact reveal" src="ponyo/Information.png" alt="라면을 먹는 포뇨와 소스케"
+      loading="lazy" />
     <p class="invitation-title reveal">Information</p>
     <h2 class="reveal">연회장</h2>
     <p class="info-text reveal">연회장은 지하 1층에 위치하여<br>예식 1시간 전부터 이용하실 수 있습니다.</p>
@@ -1306,8 +1325,8 @@
     <div class="nav-buttons reveal">
       <a class="nav-btn" href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+55+소망교회" target="_blank"
         rel="noopener"><span class="map-icon map-icon-naver" aria-hidden="true">N</span>네이버 지도</a>
-      <a class="nav-btn" href="https://map.kakao.com/link/to/소망교회,37.5278,127.0271" target="_blank"
-        rel="noopener"><span class="map-icon map-icon-kakao" aria-hidden="true">K</span>카카오맵</a>
+      <a class="nav-btn" href="https://map.kakao.com/link/to/소망교회,37.5278,127.0271" target="_blank" rel="noopener"><span
+          class="map-icon map-icon-kakao" aria-hidden="true">K</span>카카오맵</a>
       <a class="nav-btn" href="tmap://route?goalname=압구정 소망교회&goalx=127.0271&goaly=37.5278" target="_blank"
         rel="noopener"><span class="map-icon map-icon-tmap" aria-hidden="true">T</span>T맵</a>
     </div>
@@ -1324,6 +1343,7 @@
 
   <!-- 8. Gift -->
   <section class="gift-section reveal">
+    <img class="section-art reveal" src="ponyo/마음을전하실곳.png" alt="마음을 전하실 곳" loading="lazy" />
     <div class="gift-divider"></div>
     <p class="gift-title">마음 전하실곳</p>
     <p class="gift-note">
@@ -1333,15 +1353,15 @@
       <details class="account-item">
         <summary>신랑측에게</summary>
         <div class="account-detail">
-          <span>김성은 · 우리은행 0000-000-000000</span>
-          <button class="copy-btn" data-account="0000-000-000000">복사</button>
+          <span>김성은 · 우리은행 1002-862-074796</span>
+          <button class="copy-btn" data-account="1002-862-074796">복사</button>
         </div>
       </details>
       <details class="account-item">
         <summary>신부측에게</summary>
         <div class="account-detail">
-          <span>탁예원 · 하나은행 0000-000-000000</span>
-          <button class="copy-btn" data-account="0000-000-000000">복사</button>
+          <span>탁예원 · 하나은행 254-910456-74607</span>
+          <button class="copy-btn" data-account="254-910456-74607">복사</button>
         </div>
       </details>
     </div>
@@ -1349,6 +1369,7 @@
 
   <!-- 9. Share -->
   <section class="share-section reveal">
+    <img class="section-art reveal" src="ponyo/share.png" alt="청첩장 공유" loading="lazy" />
     <p class="section-label">SHARE</p>
     <div class="share-buttons">
       <button id="kakao-share-btn" class="share-btn share-btn-kakao">카카오톡으로 청첩장 전하기</button>
@@ -1359,6 +1380,7 @@
 
   <!-- Footer -->
   <footer>
+    <img class="section-art" src="ponyo/handamade.png" alt="Handmade by" loading="lazy" />
     <p>Handmade by</p>
     <p>신부 탁예원</p>
     <p>&#9825;</p>
