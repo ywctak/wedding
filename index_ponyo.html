@@ -831,20 +831,24 @@
     .nav-buttons {
       display: flex;
       justify-content: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      max-width: 500px;
+      gap: 0.35rem;
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: 420px;
       margin: 0 auto 3rem;
     }
 
     .nav-btn {
-      padding: 0.7rem 1.5rem;
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0.65rem 0.25rem;
       border: 1px solid var(--accent);
       background: transparent;
       color: var(--accent);
       font-family: 'Montserrat', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      font-size: 0.62rem;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
       text-decoration: none;
       transition: color 0.3s;
       position: relative;
@@ -856,8 +860,8 @@
     }
 
     .map-icon {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 5px;
       display: inline-flex;
       align-items: center;
@@ -865,7 +869,7 @@
       flex: 0 0 auto;
       color: #fff;
       font-family: Arial, sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.66rem;
       font-weight: 700;
       line-height: 1;
       letter-spacing: 0;
