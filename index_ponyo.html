@@ -89,6 +89,35 @@
       color: var(--bg);
     }
 
+    .splash-gif {
+      display: block;
+      width: min(500px, 88vw);
+      height: auto;
+      border: 1px solid rgba(250, 246, 238, 0.55);
+      box-shadow: 0 14px 36px rgba(40, 0, 10, 0.28);
+    }
+
+    .splash-message {
+      margin-top: 1.35rem;
+      font-family: 'Nanum Pen Script', cursive;
+      font-size: clamp(1.65rem, 6vw, 2.35rem);
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+      color: var(--bg);
+    }
+
+    .splash-heart {
+      display: inline-block;
+      margin: 0 0.18em;
+      animation: heartBeat 1.6s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      45% { transform: scale(1.14); }
+    }
+
     .splash-box {
       display: flex;
       flex-direction: column;
@@ -1030,11 +1059,8 @@
 <body>
 
   <div id="splash">
-    <p class="splash-invite">초대합니다</p>
-    <div class="splash-box">
-      <p class="splash-wedding-of">Wedding of</p>
-      <div class="monogram handwrite">성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;예원</div>
-    </div>
+    <img class="splash-gif" src="ponyo/tumblr_mh3vupP3Jc1re0vtqo1_500.gif" alt="포뇨 애니메이션" />
+    <p class="splash-message">김성은 <span class="splash-heart" aria-hidden="true">♥</span> 탁예원 결혼에 초대합니다!</p>
   </div>
 
   <div id="yt-player-wrap">
