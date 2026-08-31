@@ -849,7 +849,31 @@
       transition: color 0.3s;
       position: relative;
       overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
+
+    .map-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .map-icon-naver { background: #03c75a; }
+    .map-icon-kakao { background: #fee500; color: #391b1b; }
+    .map-icon-tmap { background: #e9465b; }
 
     .nav-btn::before {
       content: '';
@@ -1028,6 +1052,9 @@
 
     .theme-switch-btn {
       display: block;
+      background: #800020;
+      border-color: #800020;
+      color: #faf6ee;
       text-decoration: none;
       text-align: center;
     }
@@ -1118,9 +1145,10 @@
     <img class="section-art reveal" src="ponyo/invitation.png" alt="포뇨와 소스케" loading="lazy" />
     <p class="invitation-title reveal">Invitation</p>
     <p class="reveal">
-      2021년 봄, 우연히 함께한 자리에서 처음 마주쳤습니다. 대화를 나눌수록 서로를 더 알고 싶어졌고,
-      자연스럽게 서로의 일상 속으로 스며들었습니다. 함께한 시간이 쌓여갈수록 확신은 더 깊어졌고,
-      이제 두 사람이 아닌 하나의 이름으로 새로운 이야기를 시작하려 합니다. 저희의 시작을 함께 축하해 주세요.
+      서로를 아끼고 사랑하는 마음으로<br>
+      시작하는 저희의 앞날을<br>
+      따뜻한 격려와 축복으로<br>
+      지켜봐 주시면 감사하겠습니다.
     </p>
   </section>
 
@@ -1273,11 +1301,11 @@
     <p class="nav-hint reveal">버튼을 누르면 앱에서 길 안내가 시작됩니다</p>
     <div class="nav-buttons reveal">
       <a class="nav-btn" href="https://map.naver.com/v5/search/서울+강남구+압구정로36길+55+소망교회" target="_blank"
-        rel="noopener">네이버 지도</a>
+        rel="noopener"><span class="map-icon map-icon-naver" aria-hidden="true">N</span>네이버 지도</a>
       <a class="nav-btn" href="https://map.kakao.com/link/to/소망교회,37.5278,127.0271" target="_blank"
-        rel="noopener">카카오맵</a>
+        rel="noopener"><span class="map-icon map-icon-kakao" aria-hidden="true">K</span>카카오맵</a>
       <a class="nav-btn" href="tmap://route?goalname=압구정 소망교회&goalx=127.0271&goaly=37.5278" target="_blank"
-        rel="noopener">T맵</a>
+        rel="noopener"><span class="map-icon map-icon-tmap" aria-hidden="true">T</span>T맵</a>
     </div>
 
     <div class="parking-info reveal">
