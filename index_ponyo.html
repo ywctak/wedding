@@ -523,6 +523,10 @@
       border-radius: 50%;
     }
 
+    .numeric-text {
+      font-family: 'Montserrat', serif !important;
+    }
+
     .calendar-day.empty {
       visibility: hidden;
     }
@@ -947,6 +951,14 @@
       opacity: 0.65;
     }
 
+    .parking-emphasis {
+      font-weight: 700;
+    }
+
+    .parking-transit-note {
+      font-style: italic;
+    }
+
     /* ── Gift / Account ── */
     .gift-section {
       position: relative;
@@ -1256,7 +1268,7 @@
       D-DAY</h2>
     <div class="countdown">
       <div class="countdown-box">
-        <span class="countdown-number" id="cd-days">000</span>
+        <span class="countdown-number" id="cd-days">00</span>
         <span class="countdown-label">Days</span>
       </div>
       <span class="countdown-colon">:</span>
@@ -1347,7 +1359,8 @@
     </div>
     <div class="parking-info reveal">
       <p class="parking-title">주차</p>
-      <p class="parking-text">소망교회 혹은 신구중학교에<br>주차하실 수 있습니다.<br>대중교통을 이용하시는 것이 더욱 편리합니다.</p>
+      <p class="parking-text"><span class="parking-emphasis">소망교회 혹은 신구중학교에<br>주차하실 수 있습니다.</span><br><span
+          class="parking-transit-note">대중교통을 이용하시는 것이 더욱 편리합니다.</span></p>
     </div>
   </section>
 
@@ -1460,7 +1473,7 @@
       const h = Math.floor((diff % 86400000) / 3600000);
       const m = Math.floor((diff % 3600000) / 60000);
       const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('cd-days').textContent = String(d).padStart(3, '0');
+      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
       document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
       document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
       document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
@@ -1599,6 +1612,31 @@
     if (typeof naver !== 'undefined') {
       initNaverMapByAddress('map-somang', '서울 강남구 압구정로36길 55 소망교회', '압구정 소망교회 선교관 2층', 37.5278, 127.0271);
     }
+
+    // Match visible numbers to the calendar font, except for the D-DAY area.
+    const numericTextNodes = [];
+    const numericTextWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (numericTextWalker.nextNode()) {
+      const node = numericTextWalker.currentNode;
+      const parent = node.parentElement;
+      if (/\d/.test(node.nodeValue) && parent && !parent.closest('script, style, .countdown, .countdown-summary')) {
+        numericTextNodes.push(node);
+      }
+    }
+    numericTextNodes.forEach(node => {
+      const fragment = document.createDocumentFragment();
+      node.nodeValue.split(/(\d+)/).forEach(part => {
+        if (/^\d+$/.test(part)) {
+          const span = document.createElement('span');
+          span.className = 'numeric-text';
+          span.textContent = part;
+          fragment.appendChild(span);
+        } else {
+          fragment.appendChild(document.createTextNode(part));
+        }
+      });
+      node.replaceWith(fragment);
+    });
   </script>
 </body>
 
