@@ -10,6 +10,7 @@
   <meta property="og:description" content="2026년 11월 7일 토요일 오후 2시 · 소망교회 선교관 2층" />
   <meta property="og:image" content="https://ywctak.github.io/wedding/og-image.jpg" />
   <meta property="og:url" content="https://ywctak.github.io/wedding/" />
+  <link rel="preload" as="image" href="ponyo/opener.jpeg" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Nanum+Pen+Script&family=Montserrat:wght@300;400;600&display=swap"
     rel="stylesheet" />
@@ -54,7 +55,7 @@
       justify-content: center;
       gap: 1rem;
       text-align: center;
-      background: var(--accent);
+      background: radial-gradient(circle at center, #9d263c 0%, #800020 55%, #570016 100%);
       color: var(--bg);
       transition: opacity 0.6s ease, visibility 0.6s ease;
     }
@@ -63,6 +64,44 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+    }
+
+    .splash-opener {
+      display: block;
+      width: min(92vw, 760px);
+      max-height: 84vh;
+      object-fit: contain;
+      border-radius: 0.4rem;
+      filter: drop-shadow(0 1.2rem 2.2rem rgba(32, 0, 8, 0.42));
+      animation: openerReveal 1.45s cubic-bezier(0.22, 1, 0.36, 1) both,
+        openerFloat 2.2s 1.45s ease-in-out infinite alternate;
+      will-change: transform, opacity, filter;
+    }
+
+    @keyframes openerReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.86) translateY(1.5rem);
+        filter: blur(10px) drop-shadow(0 1.2rem 2.2rem rgba(32, 0, 8, 0));
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0) drop-shadow(0 1.2rem 2.2rem rgba(32, 0, 8, 0.42));
+      }
+    }
+
+    @keyframes openerFloat {
+      to {
+        transform: scale(1.018) translateY(-0.35rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .splash-opener {
+        animation: none;
+      }
     }
 
     #splash .monogram {
@@ -1072,11 +1111,7 @@
 <body>
 
   <div id="splash">
-    <p class="splash-invite">초대합니다</p>
-    <div class="splash-box">
-      <p class="splash-wedding-of">Wedding of</p>
-      <div class="monogram handwrite">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
-    </div>
+    <img class="splash-opener" src="ponyo/opener.jpeg" alt="2026년 11월 7일 Save the date" />
   </div>
 
   <div id="yt-player-wrap">

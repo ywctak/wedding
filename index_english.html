@@ -10,6 +10,7 @@
   <meta property="og:description" content="Saturday, Nov 7, 2026 at 2:00 PM · Somang Church Mission Center, 2nd Floor" />
   <meta property="og:image" content="https://ywctak.github.io/wedding/og-image.jpg" />
   <meta property="og:url" content="https://ywctak.github.io/wedding/index_english.html" />
+  <link rel="preload" as="image" href="ponyo/opener.jpeg" />
   <style>
     *,
     *::before,
@@ -52,7 +53,7 @@
       justify-content: center;
       gap: 1rem;
       text-align: center;
-      background: var(--accent);
+      background: radial-gradient(circle at center, #9d263c 0%, #800020 55%, #570016 100%);
       color: var(--bg);
       transition: opacity 0.6s ease, visibility 0.6s ease;
     }
@@ -61,6 +62,44 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+    }
+
+    .splash-opener {
+      display: block;
+      width: min(92vw, 760px);
+      max-height: 84vh;
+      object-fit: contain;
+      border-radius: 0.4rem;
+      filter: drop-shadow(0 1.2rem 2.2rem rgba(32, 0, 8, 0.42));
+      animation: openerReveal 1.45s cubic-bezier(0.22, 1, 0.36, 1) both,
+        openerFloat 2.2s 1.45s ease-in-out infinite alternate;
+      will-change: transform, opacity, filter;
+    }
+
+    @keyframes openerReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.86) translateY(1.5rem);
+        filter: blur(10px) drop-shadow(0 1.2rem 2.2rem rgba(32, 0, 8, 0));
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0) drop-shadow(0 1.2rem 2.2rem rgba(32, 0, 8, 0.42));
+      }
+    }
+
+    @keyframes openerFloat {
+      to {
+        transform: scale(1.018) translateY(-0.35rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .splash-opener {
+        animation: none;
+      }
     }
 
     #splash .monogram {
@@ -1070,11 +1109,7 @@
 <body>
 
   <div id="splash">
-    <p class="splash-invite">You're Invited</p>
-    <div class="splash-box">
-      <p class="splash-wedding-of">Wedding of</p>
-      <div class="monogram handwrite">Seong Eun Kim&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;Yae Won Tak</div>
-    </div>
+    <img class="splash-opener" src="ponyo/opener.jpeg" alt="Save the date, Nov 7, 2026" />
   </div>
 
   <div id="yt-player-wrap">
