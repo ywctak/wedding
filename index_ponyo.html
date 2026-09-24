@@ -710,10 +710,6 @@
       color: var(--accent);
     }
 
-    .gallery-more.is-hidden {
-      display: none;
-    }
-
     .lightbox {
       position: fixed;
       inset: 0;
@@ -1317,7 +1313,7 @@
     <img class="section-art section-art-compact reveal" src="ponyo/gallery.png" alt="배 위의 포뇨와 소스케" loading="lazy" />
     <p class="invitation-title reveal">Gallery</p>
     <p class="gallery-hint reveal">사진을 클릭하시면 전체화면 보기가 가능해집니다.</p>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="gallery-grid">
       <div class="gallery-item" data-index="1"><img src="wedding_image/logo/1_1.jpg" alt="웨딩 사진 1" loading="lazy" /></div>
       <div class="gallery-item" data-index="2"><img src="wedding_image/logo/2_1.jpg" alt="웨딩 사진 2" loading="lazy" /></div>
       <div class="gallery-item" data-index="3"><img src="wedding_image/logo/3_1.jpg" alt="웨딩 사진 3" loading="lazy" /></div>
@@ -1334,7 +1330,7 @@
       <div class="gallery-item gallery-item-extra" data-index="14"><img src="wedding_image/logo/14_1.jpg" alt="웨딩 사진 14" loading="lazy" /></div>
       <div class="gallery-item gallery-item-extra" data-index="15"><img src="wedding_image/logo/15_1.jpg" alt="웨딩 사진 15" loading="lazy" /></div>
     </div>
-    <button class="gallery-more" id="gallery-more">더보기</button>
+    <button type="button" class="gallery-more" id="gallery-more" aria-expanded="false" aria-controls="gallery-grid">더보기</button>
   </section>
 
   <div class="lightbox" id="lightbox">
@@ -1536,10 +1532,14 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // ── Gallery show more ──
+    // ── Gallery expand / collapse ──
     document.getElementById('gallery-more').addEventListener('click', (e) => {
-      document.querySelector('.gallery-grid').classList.add('expanded');
-      e.target.classList.add('is-hidden');
+      const expanded = document.getElementById('gallery-grid').classList.toggle('expanded');
+      e.currentTarget.textContent = expanded ? '접기' : '더보기';
+      e.currentTarget.setAttribute('aria-expanded', String(expanded));
+      if (!expanded) {
+        e.currentTarget.scrollIntoView({ block: 'nearest' });
+      }
     });
 
     // ── Account copy buttons ──
