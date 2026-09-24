@@ -290,6 +290,15 @@
       animation: fadeIn 1.4s ease both;
     }
 
+    .hero-photo > img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .hero-photo-caption {
       position: absolute;
       top: 1.8rem;
@@ -650,6 +659,8 @@
 
     .gallery-item {
       aspect-ratio: 1/1;
+      min-width: 0;
+      overflow: hidden;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(195, 229, 240, 0.42));
       border: 1px solid var(--line);
       display: flex;
@@ -660,6 +671,15 @@
       color: rgba(31, 95, 126, 0.58);
       font-size: 1.3rem;
       transition: opacity 0.3s;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+      object-fit: cover;
     }
 
     .gallery-item:hover {
@@ -715,16 +735,20 @@
     }
 
     .lightbox-content {
-      width: min(80vw, 460px);
-      aspect-ratio: 4/5;
-      background: linear-gradient(135deg, rgba(47, 127, 166, 0.3), rgba(188, 226, 239, 0.12));
-      border: 1px solid rgba(47, 127, 166, 0.45);
+      max-width: 90vw;
+      max-height: 85vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      color: #faf6f0;
-      font-size: 1.8rem;
+    }
+
+    .lightbox-content img {
+      display: block;
+      max-width: 90vw;
+      max-height: 85vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
     }
 
     .lightbox-close {
@@ -1172,7 +1196,7 @@
   <!-- 1. Hero -->
   <section class="hero">
     <div class="hero-photo">
-      사진
+      <img src="wedding_image/home.jpg" alt="신랑 신부 웨딩 사진" fetchpriority="high" />
       <div class="hero-photo-caption">We are getting<br>Married</div>
     </div>
     <div class="monogram">김성은&nbsp;&nbsp;<span class="ampersand">&</span>&nbsp;&nbsp;탁예원</div>
@@ -1296,18 +1320,21 @@
     <p class="invitation-title reveal">Gallery</p>
     <p class="gallery-hint reveal">사진을 클릭하시면 전체화면 보기가 가능해집니다.</p>
     <div class="gallery-grid">
-      <div class="gallery-item" data-index="1">1</div>
-      <div class="gallery-item" data-index="2">2</div>
-      <div class="gallery-item" data-index="3">3</div>
-      <div class="gallery-item" data-index="4">4</div>
-      <div class="gallery-item" data-index="5">5</div>
-      <div class="gallery-item" data-index="6">6</div>
-      <div class="gallery-item gallery-item-extra" data-index="7">7</div>
-      <div class="gallery-item gallery-item-extra" data-index="8">8</div>
-      <div class="gallery-item gallery-item-extra" data-index="9">9</div>
-      <div class="gallery-item gallery-item-extra" data-index="10">10</div>
-      <div class="gallery-item gallery-item-extra" data-index="11">11</div>
-      <div class="gallery-item gallery-item-extra" data-index="12">12</div>
+      <div class="gallery-item" data-index="1"><img src="wedding_image/logo/1_1.jpg" alt="웨딩 사진 1" loading="lazy" /></div>
+      <div class="gallery-item" data-index="2"><img src="wedding_image/logo/2_1.jpg" alt="웨딩 사진 2" loading="lazy" /></div>
+      <div class="gallery-item" data-index="3"><img src="wedding_image/logo/3_1.jpg" alt="웨딩 사진 3" loading="lazy" /></div>
+      <div class="gallery-item" data-index="4"><img src="wedding_image/logo/4_1.jpg" alt="웨딩 사진 4" loading="lazy" /></div>
+      <div class="gallery-item" data-index="5"><img src="wedding_image/logo/5_1.jpg" alt="웨딩 사진 5" loading="lazy" /></div>
+      <div class="gallery-item" data-index="6"><img src="wedding_image/logo/6_1.jpg" alt="웨딩 사진 6" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="7"><img src="wedding_image/logo/7_1.jpg" alt="웨딩 사진 7" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="8"><img src="wedding_image/logo/8_1.jpg" alt="웨딩 사진 8" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="9"><img src="wedding_image/logo/9_1.jpg" alt="웨딩 사진 9" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="10"><img src="wedding_image/logo/10_1.jpg" alt="웨딩 사진 10" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="11"><img src="wedding_image/logo/11_1.jpg" alt="웨딩 사진 11" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="12"><img src="wedding_image/logo/12_1.jpg" alt="웨딩 사진 12" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="13"><img src="wedding_image/logo/13_1.jpg" alt="웨딩 사진 13" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="14"><img src="wedding_image/logo/14_1.jpg" alt="웨딩 사진 14" loading="lazy" /></div>
+      <div class="gallery-item gallery-item-extra" data-index="15"><img src="wedding_image/logo/15_1.jpg" alt="웨딩 사진 15" loading="lazy" /></div>
     </div>
     <button class="gallery-more" id="gallery-more">더보기</button>
   </section>
@@ -1497,7 +1524,9 @@
     }
     document.querySelectorAll('.gallery-item').forEach(item => {
       item.addEventListener('click', () => {
-        lightboxContent.textContent = item.textContent;
+        const image = item.querySelector('img').cloneNode();
+        image.loading = 'eager';
+        lightboxContent.replaceChildren(image);
         lightbox.classList.add('active');
       });
     });
