@@ -720,15 +720,18 @@
       z-index: 50;
       opacity: 0;
       pointer-events: none;
+      visibility: hidden;
       transition: opacity 0.3s;
     }
 
     .lightbox.active {
+      visibility: visible;
       opacity: 1;
       pointer-events: auto;
     }
 
     .lightbox-content {
+      touch-action: pan-y pinch-zoom;
       max-width: 90vw;
       max-height: 85vh;
       display: flex;
@@ -743,6 +746,31 @@
       width: auto;
       height: auto;
       object-fit: contain;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      background: rgba(20, 18, 15, 0.6);
+      color: #faf6f0;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 20px;
+      color: #faf6f0;
+      font-size: 0.9rem;
     }
 
     .lightbox-close {
@@ -1345,8 +1373,11 @@
   </section>
 
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightbox-close">&times;</button>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="사진 닫기">&times;</button>
     <div class="lightbox-content" id="lightbox-content"></div>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="이전 사진">&#8249;</button>
+    <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="다음 사진">&#8250;</button>
+    <p class="lightbox-counter" id="lightbox-counter" aria-live="polite"></p>
   </div>
 
   <!-- 6. Information -->
@@ -1539,24 +1570,59 @@
     // ── Gallery lightbox ──
     const lightbox = document.getElementById('lightbox');
     const lightboxContent = document.getElementById('lightbox-content');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    let currentPhotoIndex = 0;
+    let touchStart = null;
+
+    function showPhoto(index) {
+      currentPhotoIndex = (index + galleryItems.length) % galleryItems.length;
+      const image = galleryItems[currentPhotoIndex].querySelector('img').cloneNode();
+      image.loading = 'eager';
+      image.draggable = false;
+      lightboxContent.replaceChildren(image);
+      lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${galleryItems.length}`;
+    }
+
     function closeLightbox() {
       lightbox.classList.remove('active');
+      touchStart = null;
     }
-    document.querySelectorAll('.gallery-item').forEach(item => {
+    galleryItems.forEach((item, index) => {
       item.addEventListener('click', () => {
-        const image = item.querySelector('img').cloneNode();
-        image.loading = 'eager';
-        lightboxContent.replaceChildren(image);
+        showPhoto(index);
         lightbox.classList.add('active');
       });
     });
+    document.getElementById('lightbox-prev').addEventListener('click', () => showPhoto(currentPhotoIndex - 1));
+    document.getElementById('lightbox-next').addEventListener('click', () => showPhoto(currentPhotoIndex + 1));
     document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
     document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
       if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        showPhoto(currentPhotoIndex + (e.key === 'ArrowLeft' ? -1 : 1));
+      }
     });
+    lightboxContent.addEventListener('touchstart', (e) => {
+      touchStart = e.touches.length === 1
+        ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
+        : null;
+    }, { passive: true });
+    lightboxContent.addEventListener('touchend', (e) => {
+      if (!touchStart) return;
+      const dx = e.changedTouches[0].clientX - touchStart.x;
+      const dy = e.changedTouches[0].clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy)) {
+        showPhoto(currentPhotoIndex + (dx < 0 ? 1 : -1));
+      }
+    }, { passive: true });
+    lightboxContent.addEventListener('touchcancel', () => { touchStart = null; });
 
     // ── Gallery expand / collapse ──
     document.getElementById('gallery-more').addEventListener('click', (e) => {
