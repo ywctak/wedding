@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#e8dfd0" />
+  <meta name="description" content="귀한 발걸음으로 저희의 시작을 완성해 주셔서 감사합니다." />
+  <title>김성은&amp; 탁예원 | THANK YOU</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="김성은&amp; 탁예원 | THANK YOU" />
+  <meta property="og:description" content="귀한 발걸음으로 저희의 시작을 완성해 주셔서 감사합니다." />
+  <meta property="og:image" content="https://ywctak.github.io/wedding/wedding_image/IMG_6684_BW.jpg" />
+  <meta property="og:image:alt" content="예식장에서 결혼식을 올리는 예원과 성은" />
+  <meta property="og:url" content="https://ywctak.github.io/wedding/index_thankyou_parents_copy.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #e8dfd0;
+      --paper-light: #f2ece2;
+      --ink: #41382f;
+      --muted: #85786a;
+      --rule: rgba(99, 79, 58, 0.3);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(255, 255, 255, 0.42), transparent 34%),
+        radial-gradient(ellipse at 88% 82%, rgba(183, 162, 135, 0.16), transparent 38%),
+        linear-gradient(135deg, var(--paper-light), var(--paper) 52%, #e4d8c6);
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 300;
+    }
+
+    main {
+      display: flex;
+      min-height: 100svh;
+      flex-direction: column;
+      align-items: center;
+      padding: clamp(2.5rem, 8vh, 5.5rem) 1.5rem 3rem;
+      text-align: center;
+      animation: appear 1.1s ease-out both;
+    }
+
+    h1 {
+      margin: 0;
+      color: #594b3d;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 9vw, 5rem);
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .divider {
+      display: flex;
+      width: min(17rem, 70vw);
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1.6rem 0 2rem;
+      color: var(--muted);
+    }
+
+    .divider::before,
+    .divider::after {
+      height: 1px;
+      flex: 1;
+      background: var(--rule);
+      content: '';
+    }
+
+    .divider span {
+      font-size: 0.7rem;
+    }
+
+    figure {
+      margin: 0;
+      overflow: hidden;
+      border: 0.55rem solid rgba(255, 252, 246, 0.72);
+      box-shadow: 0 1.2rem 3rem rgba(73, 56, 38, 0.17), 0 0 0 1px rgba(104, 83, 60, 0.13);
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-photo {
+      width: min(100%, 60rem);
+    }
+
+    .featured-photo {
+      width: min(100%, 46rem);
+      margin-top: 2.5rem;
+    }
+
+    .intro {
+      max-width: 38rem;
+      margin: 1.75rem 0 0;
+      font-size: clamp(0.98rem, 2.8vw, 1.12rem);
+      line-height: 2;
+      word-break: keep-all;
+    }
+
+    .message {
+      max-width: 38rem;
+      margin: 1.75rem 0 0;
+      font-size: clamp(0.92rem, 2.8vw, 1.05rem);
+      line-height: 2.15;
+      word-break: keep-all;
+    }
+
+    .signature {
+      margin: 1.25rem 0 0;
+      color: #6b5947;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+    }
+
+    .photo-gallery {
+      width: min(100%, 50rem);
+      margin-top: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .gallery-grid figure {
+      aspect-ratio: 3 / 4;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .reveal-photo {
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-ready .reveal-photo {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+
+    .reveal-ready .reveal-photo.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(0.8rem);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding-top: 3.2rem;
+      }
+
+      .message {
+        margin-top: 1.6rem;
+      }
+
+      .featured-photo {
+        margin-top: 2rem;
+      }
+
+      .photo-gallery {
+        margin-top: 2.25rem;
+      }
+
+      .gallery-grid {
+        gap: 0.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      main {
+        animation: none;
+      }
+
+      .reveal-photo {
+        transition: none;
+      }
+
+      .reveal-ready .reveal-photo {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Thank you !</h1>
+    <div class="divider" aria-hidden="true"><span>♥</span></div>
+    <figure class="hero-photo">
+      <img src="wedding_image/IMG_6684_BW.jpg" alt="예식장에서 결혼식을 올리는 예원과 성은" fetchpriority="high" />
+    </figure>
+    <p class="intro">
+      바쁜 일상 속에도 귀한 시간 내어 축하해주신 모든 분께 진심으로 감사드립니다.
+    </p>
+    <figure class="featured-photo reveal-photo">
+      <img src="wedding_image/KakaoTalk_Photo_2026-11-08-23-47-05.jpeg" alt="결혼식에서 함께한 가족과 하객" loading="lazy" />
+    </figure>
+    <p class="message">자녀의 결혼을 축복해 주시고 함께해 주셔서 진심으로 감사드립니다.</p>
+    <p class="signature">김영동, 강경량 배상</p>
+    <section class="photo-gallery" aria-label="결혼식 사진">
+      <div class="gallery-grid">
+        <figure class="reveal-photo"><img src="wedding_image/IMG_6094.jpeg" alt="결혼식 기념사진 1" loading="lazy" /></figure>
+        <figure class="reveal-photo"><img src="wedding_image/IMG_6049.jpeg" alt="결혼식 기념사진 2" loading="lazy" /></figure>
+        <figure class="reveal-photo"><img src="wedding_image/IMG_5972.jpeg" alt="결혼식 기념사진 3" loading="lazy" /></figure>
+        <figure class="reveal-photo"><img src="wedding_image/IMG_6443.jpeg" alt="결혼식 기념사진 4" loading="lazy" /></figure>
+      </div>
+    </section>
+  </main>
+  <script>
+    const revealPhotos = document.querySelectorAll('.reveal-photo');
+
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('reveal-ready');
+      const photoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealPhotos.forEach((photo) => photoObserver.observe(photo));
+    }
+  </script>
+</body>
+
+</html>
