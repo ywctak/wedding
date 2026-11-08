@@ -153,16 +153,14 @@
     }
 
     .reveal-photo {
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition: transform 0.7s ease;
     }
 
     .reveal-ready .reveal-photo {
-      opacity: 0;
       transform: translateY(1.25rem);
     }
 
     .reveal-ready .reveal-photo.is-visible {
-      opacity: 1;
       transform: translateY(0);
     }
 
@@ -210,7 +208,6 @@
       }
 
       .reveal-ready .reveal-photo {
-        opacity: 1;
         transform: none;
       }
     }
@@ -228,7 +225,7 @@
       바쁜 일상 속에도 귀한 시간 내어 축하해주신 모든 분께 진심으로 감사드립니다.
     </p>
     <figure class="featured-photo reveal-photo">
-      <img src="wedding_image/IMG_6757.jpeg" alt="결혼식에서 함께한 가족과 하객" loading="lazy" />
+      <img src="wedding_image/IMG_6757.jpeg" alt="결혼식에서 함께한 가족과 하객" loading="eager" />
     </figure>
     <p class="message">자녀의 결혼을 축복해 주시고 함께해 주셔서 진심으로 감사드립니다.</p>
     <p class="signature">탁영진, 박현주 배상</p>
@@ -246,16 +243,32 @@
 
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.classList.add('reveal-ready');
-      const photoObserver = new IntersectionObserver((entries, observer) => {
+      let photoObserver;
+      const revealVisiblePhotos = () => {
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        revealPhotos.forEach((photo) => {
+          const bounds = photo.getBoundingClientRect();
+          if (bounds.top < viewportHeight + 240 && bounds.bottom > -240) {
+            photo.classList.add('is-visible');
+            photoObserver.unobserve(photo);
+          }
+        });
+      };
+
+      photoObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+            photoObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.1 });
+      }, { rootMargin: '240px 0px', threshold: 0 });
 
       revealPhotos.forEach((photo) => photoObserver.observe(photo));
+      window.addEventListener('scroll', revealVisiblePhotos, { passive: true });
+      window.addEventListener('resize', revealVisiblePhotos);
+      revealVisiblePhotos();
     }
   </script>
 </body>
